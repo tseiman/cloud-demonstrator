@@ -1,0 +1,100 @@
+    
+
+
+    <div class="modal fade" id="passwdDialog" tabindex="-1" role="dialog" aria-labelledby="passwdDialogLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="passwdDialogLabel">login</h5>
+            <!-- button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button -->
+          </div>
+          <div class="modal-body">
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon1">Username</span>
+			  </div>
+			  <input type="text" id="loginUsername" class="form-control inputs" placeholder="MyName" aria-label="Username" aria-describedby="basic-addon1" data-index="1">
+			</div>
+			<div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="basic-addon1">Password</span>
+			  </div>
+			  <input type="password" id="loginPassword" class="form-control inputs" aria-label="Password" aria-describedby="basic-addon1" data-index="2">
+			</div>
+          </div>
+          <div class="modal-footer">
+            <button id="btn_passwdDialogClose" type="button" class="btn btn-primary inputs" data-index="3">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+   
+   <div id="addWidget" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog  modal-xl" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Add new widget</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" >
+	        <h6>Please select the widget to add:</h6>
+	        <div class="list-group" id="widgetadd-list-group">
+	        	<!-- PUT WIDGET LIST HERE BY JS -->
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnAddWidgetCancel">Cancel</button>
+	        <button type="button" class="btn btn-primary" disabled  id="btnAddWidgetNext">Next</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+   <div id="confWidget" class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+	  <div class="modal-dialog  modal-xl" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Configure new widget</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" >
+	        <h6>Please configure the new widget:</h6>
+	        <div class="" id="widgetconf-body">
+	        	<!-- PUT WIDGET CONFIG PANE HERE BY JS -->
+
+
+
+
+
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnConfWidgetCancel">Cancel</button>
+	        <button type="button" class="btn btn-primary" disabled  id="btnConfWidgetNext">Next</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!--	<script src="/js/reconnecting-websocket.js"></script> -->
+	<script src="/js/socket.io.js"></script> 
+	<script src="https://cdn.jsdelivr.net/npm/gridstack@0.6.0/dist/gridstack.all.js" integrity="sha384-s3Q64XuIUE6desIinN3o6nVNXdmntuIxpSR6ZsckDcXcDFpnhB6whsSrkl0Gp2xz" crossorigin="anonymous"></script>
+	<script src="/js/logic.js"></script>
+
+  </body>

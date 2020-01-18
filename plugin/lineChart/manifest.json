@@ -1,0 +1,6 @@
+{
+	"name" : "Line Chart",
+	"description" : "Draws a Line Chart",
+	"version" : "0.0.1",
+	"type": "widget"
+}

@@ -1,0 +1,6 @@
+{
+	"name" : "Pie Chart",
+	"description" : "Draws a Pie Chart",
+	"version" : "0.0.1",
+	"type": "widget"
+}

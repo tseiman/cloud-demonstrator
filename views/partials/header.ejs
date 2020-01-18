@@ -1,0 +1,84 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/images/favicon.ico">
+
+    <title>Cloud Demonstrator</title>
+
+
+    <!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@0.6.0/dist/gridstack.min.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+    <!-- Custom styles for this template -->
+    <!-- link href="navbar-top-fixed.css" rel="stylesheet" -->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">Cloud/Server Demonstrator</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">|</a>
+          </li>
+
+          <li class="nav-item active">
+
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                ClientID
+              </button>
+
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">|</a>
+          </li>
+           <li class="nav-item">
+             <button type="button" class="btn" id="btnAddWidget">
+                      <svg id="addWidgetPlusSvg" width="1in" height="1in" version="1.1" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g transform="translate(-2,-3)"><path shape-rendering="optimizeQuality" d="m50 87.5c20.7 0 37.5-16.8 37.5-37.5s-16.8-37.5-37.5-37.5-37.5 16.8-37.5 37.5 16.8 37.5 37.5 37.5zm0-72c19 0 34.5 15.5 34.5 34.5s-15.5 34.5-34.5 34.5-34.5-15.5-34.5-34.5 15.5-34.5 34.5-34.5z"/><path shape-rendering="optimizeQuality" d="m33 52h15v15c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5v-15h16c0.8 0 1.5-0.7 1.5-1.5s-0.7-1.5-1.5-1.5h-16v-16c0-0.8-0.7-1.5-1.5-1.5s-1.5 0.7-1.5 1.5v16h-15c-0.8 0-1.5 0.7-1.5 1.5s0.7 1.5 1.5 1.5z"/></g></svg>
+  </button>
+<!--              <a class="navbar-brand" href="#">
+                  <svg id="addWidgetPlusSvg" width="1in" height="1in" version="1.1" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g transform="translate(-2,-3)"><path shape-rendering="optimizeQuality" d="m50 87.5c20.7 0 37.5-16.8 37.5-37.5s-16.8-37.5-37.5-37.5-37.5 16.8-37.5 37.5 16.8 37.5 37.5 37.5zm0-72c19 0 34.5 15.5 34.5 34.5s-15.5 34.5-34.5 34.5-34.5-15.5-34.5-34.5 15.5-34.5 34.5-34.5z"/><path shape-rendering="optimizeQuality" d="m33 52h15v15c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5v-15h16c0.8 0 1.5-0.7 1.5-1.5s-0.7-1.5-1.5-1.5h-16v-16c0-0.8-0.7-1.5-1.5-1.5s-1.5 0.7-1.5 1.5v16h-15c-0.8 0-1.5 0.7-1.5 1.5s0.7 1.5 1.5 1.5z"/></g></svg>
+         
+              </a> -->
+ 
+
+          </li>
+                   
+<!--
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Mango Yellow View</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Data View</a>
+          </li>
+
+-->
+        </ul>
+<!--        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+          <img src="/images/swi-logo.png">
+      </div>
+
+
+    </nav>
+

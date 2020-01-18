@@ -1,0 +1,26 @@
+{
+  "name": "CloudDemonstratorServer",
+  "version": "1.0.0",
+  "description": "A Cloud demonstrator with a OAuth2 Pretected JSON Feed and a WebUI updated via WebSocket",
+  "main": "app.js",
+  "bin": "app.js",
+  "scripts": {
+    "lint": "jshint .",
+    "test": "mocha --recursive test"
+  },
+  "author": {
+    "name": "Thomas S."
+  },
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express-oauth-server": "2.0.0",
+    "socket.io": "2.3.0",
+    "underscore": "1.9.0",
+    "console-stamp": "0.2.9",
+    "js-sha512": "0.8.0",
+    "socketio-auth": "0.1.1"
+  },
+  "engines": {
+    "node": ">=0.11"
+  }
+}

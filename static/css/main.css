@@ -1,0 +1,84 @@
+#body-frame {
+	padding-top: 6em;
+}
+/*
+.grid-stack-item {
+	margin: 10px;
+	background-color: #f8fcff;
+}
+*/
+/* required file for gridstack to work 
+@import "https://cdn.jsdelivr.net/npm/gridstack@0.6.0/dist/gridstack.min.css";
+*/
+/* Optional styles for demos */
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.btn {
+  display: inline-block;
+  padding: .375rem .75rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+}
+
+.dropdown:parent {
+	margin: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: .5rem;
+}
+
+.grid-stack {
+  background: #e9ecef;
+}
+
+.grid-stack-item-content {
+  color: #2c3e50;
+  text-align: center;
+  background-color: #eff6fd;
+}
+
+#addWidgetPlusSvg {
+	height: 34px;
+	fill: #10f000;
+ 	width: 40px;
+}
+#addWidgetPlusSvg:hover {
+  fill: #ffd8be;
+}
+
+
+#addWidgetPlus {
+	fill: #f00000;
+}
+
+#widgetadd-list-group {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .3rem;
+}
+.widgetadd-image-parent {
+/*  min-width: 50px;
+  max-width: 50px;  */
+  	width : 70px;
+	max-height:  70px;
+}
+
+
+.widgetadd-grouphead-div {
+    margin-right: 2em;
+    width: 85%;
+}
+
+.config-group-fixed-width {
+    width: 24em;
+}
