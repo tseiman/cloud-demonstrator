@@ -1,6 +1,0 @@
-{
-	"name" : "Bar Chart",
-	"description" : "Draws a Bar Chart",
-	"version" : "0.0.1",
-	"type": "widget"
-}

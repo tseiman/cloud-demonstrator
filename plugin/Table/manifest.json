@@ -1,0 +1,7 @@
+{
+	"name" : "Table",
+	"description" : "A sort and searchable table which can have updatend content or just adds content based on https://github.com/wenzhixin/bootstrap-table/",
+	"version" : "0.0.1",
+	"type": "widget",
+	"defaultconfig": {  "uuid": "", "caption" : "", "substitutebykey": "No","colorrule": "" , "deleterule": "", "col": [ { "colhead": "", "datasource": "", "sortable": true, "align": "center"} ] }
+}

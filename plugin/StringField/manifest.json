@@ -1,0 +1,7 @@
+{
+	"name" : "String Field",
+	"description" : "Draws a field with some arbitrary text in it",
+	"version" : "0.0.1",
+	"type": "widget",
+	"defaultconfig": {  "uuid": "", "datasource" : "", "caption" : "", "bgColor" : "#ffa887",  "color" : "#202020", "unit": ""}
+}

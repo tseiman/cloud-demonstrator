@@ -1,0 +1,109 @@
+<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="8" data-gs-height="6" id="<%- data.uuid %>">
+
+
+	<link href="/plugin/Table/bootstrap-table.min.css" rel="stylesheet" />
+	<link href="/plugin/Table/all.css" rel="stylesheet" />
+	<style type="text/css">
+
+		.table-content {
+			font-size: 0.9em;
+			overflow: hidden;
+		}
+
+	</style>
+
+    <div class="grid-stack-item-content table-content" id="gridStackItemContent-<%- data.uuid %>">
+      	<h5><%- data.caption %></h5>
+
+<div id="toolbar-<%- data.uuid %>"></div>
+			<table
+			  id="table-<%- data.uuid %>"
+			  data-toolbar="#toolbar-<%- data.uuid %>"
+			  data-search="true"
+			  data-show-fullscreen="true"
+			  data-show-columns="true"
+
+
+
+
+			  data-show-pagination-switch="true"
+			  data-pagination="true"
+			  data-page-list="[10, 25, 50, 100, all]"
+			</table>
+
+<!--
+			  data-show-footer="false"
+
+
+				  data-minimum-count-columns="1"
+			  data-detail-view="true"
+			  data-show-columns-toggle-all="false"
+
+			  data-click-to-select="true"
+			  data-show-toggle="false"
+
+				  data-show-export="false"
+				  data-show-refresh="false"
+
+			  data-detail-formatter="detailFormatter"
+			  data-id-field="id"
+
+				  data-side-pagination="server"
+			  data-url="https://examples.wenzhixin.net.cn/examples/bootstrap_table/data"
+			  data-response-handler="responseHandler">
+-->
+
+	</div>
+
+	<script src="/plugin/Table/bootstrap-table.min.js"></script>
+
+<!-- ====================================== -->
+	<script type="text/javascript">
+
+		var dataSets = '<%- JSON.stringify(data) %>';
+		var dataSetsJSON = JSON.parse( dataSets);
+// console.log("Anyhow working", dataSetsJSON);
+
+		var datasetConfig  = [];
+
+
+		for(var i = 0; i < dataSetsJSON.col.length ; i++) {
+			datasetConfig.push({"field": dataSetsJSON.col[i].datasource, "title": dataSetsJSON.col[i].colhead, "sortable": dataSetsJSON.col[i].sortable, "align": dataSetsJSON.col[i].align });
+
+		}
+		
+		
+		$("#table-<%- data.uuid %>").bootstrapTable('destroy').bootstrapTable({
+	   //   height: 300,
+	   		rowStyle:  function(row, index) { return window.globalWidgetList['<%- data.uuid %>'].logic.getRowColor(row, index)},
+	      columns: datasetConfig,
+	      uniqueId: dataSetsJSON.col[dataSetsJSON.substitutebykey -1].datasource,
+	      /*  [{
+	          field: 'name',
+	          title: 'Item Name',
+	          sortable: true,
+	          align: 'center'
+	        }, {
+	          field: 'price',
+	          title: 'Item Price',
+	          sortable: true,
+	          align: 'center',
+	        }, {
+	          field: 'operate',
+	          title: 'Item Operate',
+	          align: 'center',
+	          sortable: true,
+	        }] */
+       });
+		$('#<%- data.uuid %>').on('resizestop', function (event, ui) {
+			$('#table-<%- data.uuid %>').bootstrapTable( 'resetView' , {height: ($(this).height()- 90)} );
+		});
+		$('#table-<%- data.uuid %>').bootstrapTable( 'resetView' , {height: ($('#<%- data.uuid %>').height()- 90)} );
+//		$("#gridStackItemContent-<%- data.uuid %>").resize(function() {
+//	 		console.log("size", $(this).height());
+//	 	});
+
+	</script>
+
+
+</div>

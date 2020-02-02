@@ -1,4 +1,4 @@
-
+"use strict";
 
 const http = require('http');
 const io = require('socket.io')();
@@ -16,6 +16,8 @@ const server = http.createServer();
 
 
 var authenticated = false;
+
+var eventBroker = null;
 
 io.attach(server);
 // mit Zertifikaten !! https://github.com/websockets/ws/issues/1333
@@ -79,6 +81,10 @@ socketAuth(io, {
 	},
 	postAuthenticate: (socket) => {
 		console.log(`Socket ${socket.id} authenticated.`);
+		eventBroker.registerListener(function(msg) {
+			console.log("frontend ws got message via broker: ", msg);
+			io.emit('pushMessage', msg);
+		});
 //		socket.on('widgetList', function(msg){
 //			 io.emit('widgetList', pluginManager.listPlugins("widget"));
 //		});
@@ -93,8 +99,8 @@ socketAuth(io, {
 
 
 module.exports = {
-	setup: function () {
-
+	setup: function (eBroker) {
+		eventBroker = eBroker;
 		server.listen(wsPort, ()=>console.info(`frontent socket.io listening to port ${wsPort}`));
 
 

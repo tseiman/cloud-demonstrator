@@ -1,0 +1,454 @@
+  
+<style type="text/css">
+ .stringField-NotOk {
+  color: red;
+ }
+ .stringField-Ok {
+  color: green;
+ }
+.grpChartInputGroups {
+
+}
+.grpChartInputGroupsItems { 
+  margin-top: -15px;
+}
+.grpChartInputGroupsTitle {
+  margin: 10px;
+}
+
+.btnChartAddSegmentClass {
+  float: right;
+}
+#grpChartSegements{
+    border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+#btnChartTrashWidget {
+  float:right;
+
+}
+.btnChartTrashWidgetIcon {
+  margin-top: -1px;
+}
+#btnChartTrashWidget:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+#btnChartTrashWidget.disabled:hover {
+  filter: none;
+}
+
+
+</style>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Caption</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Caption" aria-label="CAPTION" aria-describedby="basic-addon1" accepted-input="^.+$" isOk="false" name="caption"  value="<%- caption %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<!-- <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Initial min value</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MinValue" aria-label="MinValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="minVal"  value="< %- minVal % >">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Initial max value</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="maxVal"  value="< %- maxVal % >">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div> -->
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Max Datapoints in X-Axis</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^-?[0-9]+$" isOk="false" name="maxDataPoints"  value="<%- maxDataPoints %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Timesource </span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="local" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^.*$" isOk="false" name="timesource"  value="<%- timesource %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+  <div>(enter datasource or leave blank for local time source)</div>
+
+<hr />
+<div id="grpChartSegements" >
+  <div class="grpChartInputGroups">
+    <h6 class="grpChartInputGroupsTitle">
+      Line #1
+    </h6>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width" >Name</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\[\]]+$" 
+                                                                                                                                                                                  isOk="false" name="line[0].name" value="<%- line[0].name %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <div class="input-group mb-3 grpChartInputGroupsItems">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width" >Data source</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\[\]]+$" 
+                                                                                                                                                                                  isOk="false" name="line[0].datasource" value="<%- line[0].datasource %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <div class="input-group mb-3 grpChartInputGroupsItems">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width">Line Color</span>
+      </div>
+      <input  class="form-control stringField-colorpick stringField-checkable" aria-describedby="basic-addon1" accepted-input="^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$" isOk="true" name="line[0].strokeStyle" value='<%- line[0].strokeStyle %>' >
+      <div class="input-group-append">
+        <span class="input-group-text stringField-Ok">&#10003;</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<button type="button" class="btn disabled" id="btnChartTrashWidget">
+  <span class="icon icon-bin btnChartTrashWidgetIcon"></span>
+</button>
+<button type="button" class="btn btnChartAddSegmentClass" id="btnChartAddSegment">
+  <span class="icon icon-hoverable icon-plus"></span>
+</button>
+<script type="text/javascript">
+
+$( document ).ready(function() {
+  let testForArrayElement = /^.*\[[0-9]+\]\..*$/;
+  let extractArrayElement = /^(.+)\[([0-9]+)\]\.(.*)$/g;
+
+
+  var chartColorSequence = ["rgb(0,255,0)","rgb(255,165,0)","rgb(255,0,0)"];
+
+  var configData =  '<%- JSON.stringify(line) %>'; // '<% - JSON.stringify(line) %>';
+  var configDataJSON = JSON.parse( configData);
+
+
+  function generateHTML(numSegmentItems,segmentIndex,configuredSegmentColor,datasource,name) {
+    var html = `
+
+
+      <div class="grpChartInputGroups" id="grpChartInputGroups-${numSegmentItems}">
+          <h6 class="grpChartInputGroupsTitle">
+            Line #${numSegmentItems}
+          </h6>
+           <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width" >Name</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\\.\\[\\]]+$" 
+                                                                                                                                                                                        isOk="false" name="line[${segmentIndex}].name" value="${name}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>         
+          <div class="input-group mb-3 grpChartInputGroupsItems">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width" >Data source</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" 
+                                                                          aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\\[\\]]+$" isOk="false" name="line[${segmentIndex}].datasource" value="${datasource}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3 grpChartInputGroupsItems">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width">Line Color</span>
+            </div>
+            <input  class="form-control stringField-colorpick stringField-checkable" aria-describedby="basic-addon1" accepted-input="^rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*(\\d+(?:\\.\\d+)?))?\\)$" isOk="true" 
+                                                                                                                                                          name="line[${segmentIndex}].strokeStyle" value='${configuredSegmentColor}' >
+            <div class="input-group-append">
+              <span class="input-group-text stringField-Ok">&#10003;</span>
+            </div>
+          </div>
+        </div>
+
+    `;
+    return html;
+  }
+
+// -------------------------------------------------------------
+
+  function stringFieldConfigIsAllOk() {
+    var isOk = true;
+    $( ".stringField-checkable" ).each(function( index ) {
+
+   //   console.log("stringFieldConfigIsAllOk:", $(this).attr("name"),$(this).val(),$(this).attr("isOk"));
+
+        isOk = ($(this).attr("isOk") !== "false") && isOk;
+        if($(this).attr("isOk") !== "false") {
+
+          if(testForArrayElement.test($(this).attr("name"))) {
+            extractArrayElement.lastIndex = 0;
+            let arrayElement = extractArrayElement.exec($(this).attr("name"));
+            let prefix = arrayElement[1];
+            let index = arrayElement[2];
+            let name = arrayElement[3];
+
+            let localConfig = window.newWidget.getConfig();
+
+            if(typeof localConfig[prefix] === 'undefined') {
+              window.newWidget.setConfig(prefix,[]);          
+            }
+ 
+            localConfig = window.newWidget.getConfig();
+            var localConfigSegment = localConfig[prefix]; 
+
+            if(typeof localConfigSegment[index] === 'undefined') {
+              localConfigSegment[index] = {}; 
+              window.newWidget.setConfig(prefix,localConfigSegment);
+            }
+
+            localConfig = window.newWidget.getConfig();
+            localConfigSegment = localConfig[prefix];
+  
+
+            localConfigSegment[index][name] = $(this).val();
+
+            window.newWidget.setConfig(prefix,localConfigSegment);
+                            
+
+          } else {
+            window.newWidget.setConfig($(this).attr("name"),$(this).val());          
+
+          }
+        }
+//          console.log("newWidget : ", window.newWidget);
+
+    });
+    if(!isOk) {    
+      $('#btnConfWidgetNext').attr('disabled',true);
+      return;
+    }
+
+    $('#btnConfWidgetNext').removeAttr('disabled');
+  }
+
+// -------------------------------------------------------------
+
+  function stringFieldConfigInputCheck(element,value) {
+
+    var match = RegExp($(element).attr("accepted-input")).test(value);
+
+ //    console.log("stringFieldConfigInputCheck:", $(element).attr('name'),$(element).attr("accepted-input"),value,match);
+
+    if(match) {
+      $(element).nextAll().find(".input-group-text").html("&#10003;").removeClass( "stringField-NotOk" ).addClass( "stringField-Ok" );
+      $(element).attr("isOk","true");
+    } else {
+      $(element).nextAll().find(".input-group-text").html("&#10008;").removeClass( "stringField-Ok" ).addClass( "stringField-NotOk" );
+      $(element).attr("isOk","false");
+    }
+//    stringFieldConfigIsAllOk();
+  }
+
+// -------------------------------------------------------------
+
+function checkBoxConfigInputCheck() {
+   $( ".checkBox-checkable" ).each(function( index ) {
+      window.newWidget.setConfig($(this).attr("name"),$(this).is( ":checked" )); 
+   });
+ }
+
+
+
+
+// -------------------------------------------------------------
+
+
+  $(".stringField-text-input").on('input',function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+    stringFieldConfigIsAllOk();
+  });
+
+
+
+
+  $(".stringField-text-input").focusout(function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+  $(".checkBox-checkable").click( function(){
+       checkBoxConfigInputCheck();
+  });
+  $(".stringField-text-input").each(function(index) {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+  checkBoxConfigInputCheck();   
+  stringFieldConfigIsAllOk();
+
+// -------------------------------------------------------------
+
+/*  $(".stringField-colorpick").spectrum({
+    showAlpha: true,
+    showPalette:true,
+    preferredFormat: "rgb",
+    localStorageKey: "cloud-demonstrator.colorpick",
+    clickoutFiresChange: true,
+    change: function(color) {
+          console.log(color.toRgbString()); // #ff0000
+      stringFieldConfigInputCheck(this,color.toRgbString());
+      stringFieldConfigIsAllOk();
+    }
+  }); */
+
+// -------------------------------------------------------------
+
+
+  $('#btnChartAddSegment').on('click', function(event) {
+    let numSegmentItems = $('.grpChartInputGroupsTitle').length + 1;
+    let segmentColor = "rgb(0,0,255)";
+
+    if(numSegmentItems < 4) {
+      segmentColor = chartColorSequence[numSegmentItems-1];
+    }
+
+//    let configuredSegmentColor = "<%- line[0].strokeStyle %>";
+
+ //   if(configuredSegmentColor ==="") {
+     let configuredSegmentColor = segmentColor;
+  //  }
+    let segmentIndex = numSegmentItems -1;
+    
+    var html = generateHTML(numSegmentItems,segmentIndex,configuredSegmentColor,"","");
+
+    $("#grpChartSegements").append(html);
+
+ 
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk();
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+   $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+            console.log(color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+        stringFieldConfigIsAllOk();
+      }
+    });
+
+    $("#btnChartTrashWidget").removeClass("disabled");
+
+
+  }); // add gauge segment click end
+
+// -------------------------------------------------------------
+  $('#btnChartTrashWidget').on('click', function(event) {
+    if(window.newWidget.getConfig().line.length <2 ) { return; }
+
+    let numSegmentItems = $('.grpChartInputGroupsTitle').length;
+
+//     console.log("REMOVE", numSegmentItems,window.newWidget.getConfig().line.length);
+    $("#grpChartInputGroups-" + numSegmentItems).remove();
+  
+
+    let localConfig = window.newWidget.getConfig();
+    let localConfigSegment = localConfig["line"];
+    localConfigSegment.pop();
+    window.newWidget.setConfig("line",localConfigSegment);
+
+
+    if(numSegmentItems < 3) {
+      $("#btnChartTrashWidget").addClass("disabled");
+    }
+  });
+// -------------------------------------------------------------
+
+
+  for(var i = 1; i < configDataJSON.length ; i++) {
+
+    var obj = configDataJSON[i];
+
+    var html = generateHTML(i +1,i,obj.strokeStyle,obj.datasource,obj.name);
+    $("#grpChartSegements").append(html);
+
+    $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+      //      console.log(color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+      }
+    });
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk()
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+
+    $(".checkBox-checkable").click( function(){
+         checkBoxConfigInputCheck(this, $(this).is( ":checked" ));
+    });
+
+
+    $("#btnChartTrashWidget").removeClass("disabled");
+
+
+  }
+
+  // -------------------------------------------------------------
+
+   $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+  //          console.log("colorpick", this, color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+        stringFieldConfigIsAllOk();
+      }
+    });
+
+}); // document ready from begin onf the script section
+</script>

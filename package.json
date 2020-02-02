@@ -20,6 +20,12 @@
     "js-sha512": "0.8.0",
     "socketio-auth": "0.1.1"
   },
+  "devDependencies": {
+    "dotenv": "8.2.0",
+    "request": "^2.34",
+    "request-promise": "4.2.5",
+    "btoa": "1.2.1"
+  },
   "engines": {
     "node": ">=0.11"
   }

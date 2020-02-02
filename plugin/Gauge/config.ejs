@@ -1,0 +1,441 @@
+  
+<style type="text/css">
+ .stringField-NotOk {
+  color: red;
+ }
+ .stringField-Ok {
+  color: green;
+ }
+.grpGaugeInputGroups {
+
+}
+.grpGaugeInputGroupsItems { 
+  margin-top: -15px;
+}
+.grpGaugeInputGroupsTitle {
+  margin: 10px;
+}
+
+.btnGaugeAddSegmentClass {
+  float: right;
+}
+#grpGaugeSegements{
+    border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+#btnGaugeTrashWidget {
+  float:right;
+
+}
+.btnGaugeTrashWidgetIcon {
+/*  background-size: cover;
+  height: 20px;
+  background-position: -26px 0; */
+  margin-top: -1px;
+}
+#btnGaugeTrashWidget:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+#btnGaugeTrashWidget.disabled:hover {
+  filter: none;
+}
+
+
+</style>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Data Source</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\[\]]+$" isOk="false" name="datasource" value="<%- datasource %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Caption</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Caption" aria-label="CAPTION" aria-describedby="basic-addon1" accepted-input="^.+$" isOk="false" name="caption"  value="<%- caption %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Min Value</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MinValue" aria-label="MinValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="minVal"  value="<%- minVal %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Max Value</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="maxVal"  value="<%- maxVal %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="form-check">
+  <input type="checkbox" class="form-check-input checkBox-checkable" name="displayLables" <%= displayLables ? 'checked' : ''  %>>
+  <label class="form-check-label" for="exampleCheck1">Display value labels on segments</label>
+</div>
+
+<hr />
+<div id="grpGaugeSegements" >
+  <div class="grpGaugeInputGroups">
+    <h6 class="grpGaugeInputGroupsTitle">
+      Segment #1
+    </h6>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width">Start Value</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MinValue" aria-label="MinValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="segment[0].min"  value="<%- segment[0].min %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <div class="input-group mb-3 grpGaugeInputGroupsItems">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width">End Value</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="segment[0].max"  value="<%- segment[0].max %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <div class="input-group mb-3 grpGaugeInputGroupsItems">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width">Segment Color</span>
+      </div>
+      <input  class="form-control stringField-colorpick stringField-checkable" aria-describedby="basic-addon1" accepted-input="^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+(?:\.\d+)?))?\)$" isOk="true" name="segment[0].strokeStyle" value='<%- segment[0].strokeStyle %>' >
+      <div class="input-group-append">
+        <span class="input-group-text stringField-Ok">&#10003;</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<button type="button" class="btn disabled" id="btnGaugeTrashWidget">
+  <span class="icon icon-bin btnGaugeTrashWidgetIcon"></span>
+</button>
+<button type="button" class="btn btnGaugeAddSegmentClass" id="btnGaugeAddSegment">
+  <span class="icon icon-hoverable icon-plus"></span>
+</button>
+
+<script type="text/javascript">
+
+$( document ).ready(function() {
+  let testForArrayElement = /^.*\[[0-9]+\]\..*$/;
+  let extractArrayElement = /^(.+)\[([0-9]+)\]\.(.*)$/g;
+
+
+  var gaugeColorSequence = ["rgb(0,255,0)","rgb(255,165,0)","rgb(255,0,0)"];
+
+  var configData = '<%- JSON.stringify(segment) %>';
+  var configDataJSON = JSON.parse( configData);
+
+
+  function generateHTML(numSegmentItems,segmentIndex,configuredSegmentColor,min,max) {
+    var html = `
+        <div class="grpGaugeInputGroups" id="grpGaugeInputGroups-${numSegmentItems}">
+          <h6 class="grpGaugeInputGroupsTitle">
+            Segment #${numSegmentItems}
+          </h6>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width">Start Value</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="segment[${segmentIndex}].min"  value="${min}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3 grpGaugeInputGroupsItems">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width">End Value</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="MaxValue" aria-label="MaxValue" aria-describedby="basic-addon1" accepted-input="^[-.0-9]+$" isOk="false" name="segment[${segmentIndex}].max"  value="${max}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>
+          <div class="input-group mb-3 grpGaugeInputGroupsItems">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width">Segment Color</span>
+            </div>
+            <input  class="form-control stringField-colorpick stringField-checkable" aria-describedby="basic-addon1" accepted-input="^rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*(\\d+(?:\\.\\d+)?))?\\)$" isOk="true" name="segment[${segmentIndex}].strokeStyle" value='${configuredSegmentColor}' >
+            <div class="input-group-append">
+              <span class="input-group-text stringField-Ok">&#10003;</span>
+            </div>
+          </div>
+        </div>
+    `;
+    return html;
+  }
+
+// -------------------------------------------------------------
+
+  function stringFieldConfigIsAllOk() {
+    var isOk = true;
+    $( ".stringField-checkable" ).each(function( index ) {
+        isOk = ($(this).attr("isOk") !== "false") && isOk;
+        if($(this).attr("isOk") !== "false") {
+
+          if(testForArrayElement.test($(this).attr("name"))) {
+            extractArrayElement.lastIndex = 0;
+            let arrayElement = extractArrayElement.exec($(this).attr("name"));
+            let prefix = arrayElement[1];
+            let index = arrayElement[2];
+            let name = arrayElement[3];
+
+            let localConfig = window.newWidget.getConfig();
+
+            if(typeof localConfig[prefix] === 'undefined') {
+              window.newWidget.setConfig(prefix,[]);          
+            }
+ 
+            localConfig = window.newWidget.getConfig();
+            var localConfigSegment = localConfig[prefix]; 
+
+            if(typeof localConfigSegment[index] === 'undefined') {
+              localConfigSegment[index] = {}; 
+              window.newWidget.setConfig(prefix,localConfigSegment);
+            }
+
+            localConfig = window.newWidget.getConfig();
+            localConfigSegment = localConfig[prefix];
+  
+
+            localConfigSegment[index][name] = $(this).val();
+
+            window.newWidget.setConfig(prefix,localConfigSegment);
+                            
+
+          } else {
+            window.newWidget.setConfig($(this).attr("name"),$(this).val());          
+
+          }
+        }
+//          console.log("newWidget : ", window.newWidget);
+
+    });
+    if(!isOk) {    
+      $('#btnConfWidgetNext').attr('disabled',true);
+      return;
+    }
+
+    $('#btnConfWidgetNext').removeAttr('disabled');
+  }
+
+// -------------------------------------------------------------
+
+  function stringFieldConfigInputCheck(element,value) {
+
+    var match = RegExp($(element).attr("accepted-input")).test(value);
+
+    if(match) {
+      $(element).nextAll().find(".input-group-text").html("&#10003;").removeClass( "stringField-NotOk" ).addClass( "stringField-Ok" );
+      $(element).attr("isOk","true");
+    } else {
+      $(element).nextAll().find(".input-group-text").html("&#10008;").removeClass( "stringField-Ok" ).addClass( "stringField-NotOk" );
+      $(element).attr("isOk","false");
+    }
+//    stringFieldConfigIsAllOk();
+  }
+
+// -------------------------------------------------------------
+
+function checkBoxConfigInputCheck() {
+   $( ".checkBox-checkable" ).each(function( index ) {
+      window.newWidget.setConfig($(this).attr("name"),$(this).is( ":checked" )); 
+   });
+ }
+
+
+
+
+// -------------------------------------------------------------
+
+
+  $(".stringField-text-input").on('input',function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+    stringFieldConfigIsAllOk();
+  });
+
+  $(".stringField-text-input").focusout(function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+  $(".checkBox-checkable").click( function(){
+       checkBoxConfigInputCheck();
+  });
+  $(".stringField-text-input").each(function(index) {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+  checkBoxConfigInputCheck();   
+  stringFieldConfigIsAllOk();
+
+// -------------------------------------------------------------
+/*
+  $(".stringField-colorpick").spectrum({
+    showAlpha: true,
+    showPalette:true,
+    preferredFormat: "rgb",
+    localStorageKey: "cloud-demonstrator.colorpick",
+    clickoutFiresChange: true,
+    change: function(color) {
+    //      console.log(color.toRgbString()); // #ff0000
+      stringFieldConfigInputCheck(this,color.toRgbString());
+      stringFieldConfigIsAllOk();
+    }
+  });
+*/
+// -------------------------------------------------------------
+
+
+  $('#btnGaugeAddSegment').on('click', function(event) {
+    let numSegmentItems = $('.grpGaugeInputGroupsTitle').length + 1;
+    let segmentColor = "rgb(0,0,255)";
+
+    if(numSegmentItems < 4) {
+      segmentColor = gaugeColorSequence[numSegmentItems-1];
+    }
+
+  //  let configuredSegmentColor = "<%- segment[0].strokeStyle %>";
+
+//    if(configuredSegmentColor ==="") {
+    let  configuredSegmentColor = segmentColor;
+  //  }
+    let segmentIndex = numSegmentItems -1;
+    
+    var html = generateHTML(numSegmentItems,segmentIndex,configuredSegmentColor,<%- segment[0].min %>,<%- segment[0].max %>);
+
+    $("#grpGaugeSegements").append(html);
+
+    $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+      //      console.log(color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+        stringFieldConfigIsAllOk();
+      }
+    });
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk();
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+      //      console.log(color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+        stringFieldConfigIsAllOk();
+      }
+    });
+
+    $("#btnGaugeTrashWidget").removeClass("disabled");
+
+
+  }); // add gauge segment click end
+
+// -------------------------------------------------------------
+  $('#btnGaugeTrashWidget').on('click', function(event) {
+    if(window.newWidget.getConfig().segment.length <2 ) { return; }
+    let numSegmentItems = $('.grpGaugeInputGroupsTitle').length;
+   // console.log("REMOVE", numSegmentItems);
+    $("#grpGaugeInputGroups-" + numSegmentItems).remove();
+  
+
+    let localConfig = window.newWidget.getConfig();
+    let localConfigSegment = localConfig["segment"];
+    localConfigSegment.pop();
+    window.newWidget.setConfig("segment",localConfigSegment);
+
+
+    if(numSegmentItems < 3) {
+      $("#btnGaugeTrashWidget").addClass("disabled");
+    }
+  });
+// -------------------------------------------------------------
+
+
+  for(var i = 1; i < configDataJSON.length ; i++) {
+
+    var obj = configDataJSON[i];
+    var html = generateHTML(i +1,i,obj.strokeStyle,obj.min,obj.max);
+    $("#grpGaugeSegements").append(html);
+
+    $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+      //      console.log(color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+      }
+    });
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk()
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+
+    $(".checkBox-checkable").click( function(){
+         checkBoxConfigInputCheck(this, $(this).is( ":checked" ));
+    });
+
+
+    $("#btnGaugeTrashWidget").removeClass("disabled");
+
+
+  }
+  // -------------------------------------------------------------
+   $(".stringField-colorpick").spectrum({
+      showAlpha: true,
+      showPalette:true,
+      preferredFormat: "rgb",
+      localStorageKey: "cloud-demonstrator.colorpick",
+      clickoutFiresChange: true,
+      change: function(color) {
+ //           console.log("colorpick", this, color.toRgbString()); // #ff0000
+        stringFieldConfigInputCheck(this,color.toRgbString());
+        stringFieldConfigIsAllOk();
+      }
+    });
+
+}); // document ready from begin onf the script section
+</script>

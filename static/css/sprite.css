@@ -1,0 +1,64 @@
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(/images/sprite.svg);
+}
+.icon-hoverable:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+.icon-floppy-disk {
+  width: 32px;
+  height: 32px;
+  background-position: 0 0;
+}
+.icon-bin {
+  width: 32px;
+  height: 32px;
+  background-position: -48px 0;
+}
+.icon-cloud-download {
+  width: 32px;
+  height: 32px;
+  background-position: -96px 0;
+}
+.icon-cloud-upload {
+  width: 32px;
+  height: 32px;
+  background-position: -144px 0;
+}
+.icon-download3 {
+  width: 32px;
+  height: 32px;
+  background-position: -192px 0;
+}
+.icon-upload3 {
+  width: 32px;
+  height: 32px;
+  background-position: -240px 0;
+}
+.icon-link {
+  width: 32px;
+  height: 32px;
+  background-position: -288px 0;
+}
+.icon-plus {
+  width: 32px;
+  height: 32px;
+  background-position: -336px 0;
+}
+.icon-info {
+  width: 32px;
+  height: 32px;
+  background-position: -384px 0;
+}
+.icon-cog {
+  width: 32px;
+  height: 32px;
+  background-position: -432px 0;
+}
+.icon-cogs {
+  width: 32px;
+  height: 32px;
+  background-position: -480px 0;
+}
+

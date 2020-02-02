@@ -1,0 +1,65 @@
+<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="3" id="<%- data.uuid %>">
+    <div class="grid-stack-item-content" >
+      	<h5><%- data.caption %></h5>
+		<canvas id="chartCanvas-<%- data.uuid %>"></canvas>
+
+	</div>
+	<script src="/plugin/LineChart/moment.min.js"></script>
+	<script src="/plugin/LineChart/chart.js"></script>
+	<script type="text/javascript">
+		
+		var dataSets = '<%- JSON.stringify(data) %>';
+		var dataSetsJSON = JSON.parse( dataSets);
+//		console.log("dataSetsJSON",dataSetsJSON);
+
+	//	var colors = [];
+	//	var names = [];
+		var datasetConfig  = [];
+
+
+		for(var i = 0; i < dataSetsJSON.line.length ; i++) {
+			datasetConfig.push({"label": dataSetsJSON.line[i].name, "borderColor": dataSetsJSON.line[i].strokeStyle});
+//			colors.push(dataSetsJSON.line[i].strokeStyle);
+//			names.push(dataSetsJSON.line[i].name);
+		}
+
+
+
+		console.log("datasetConfig",datasetConfig);
+		var ctx = document.getElementById('chartCanvas-<%- data.uuid %>').getContext('2d');
+		var chart = new Chart(ctx, {
+		    // The type of chart we want to create
+		    type: 'line',
+
+		    // The data for our dataset
+		    data: {
+		        labels: [],
+		        datasets: datasetConfig
+		    },
+
+		    // Configuration options go here
+		    options: {
+		      scales: {
+		            xAxes: [{
+		                type: 'time',
+		                time: {
+		                	unit: 'second',
+		                    displayFormats: {
+		                        second: 'HH:mm:ss'
+		                    }
+		                }
+		            }]
+	        	}
+
+		    //	color: colors
+		    }
+		});
+
+		$("#chartCanvas-<%- data.uuid %>").data('chart',chart);
+
+
+
+	</script>
+
+
+</div>

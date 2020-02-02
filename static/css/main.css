@@ -1,16 +1,47 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+
 #body-frame {
 	padding-top: 6em;
 }
-/*
-.grid-stack-item {
-	margin: 10px;
-	background-color: #f8fcff;
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  line-height: 30px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+  z-index: 9999;
+  padding-left: 3em;
+  font-size: 0.8em;
 }
-*/
-/* required file for gridstack to work 
-@import "https://cdn.jsdelivr.net/npm/gridstack@0.6.0/dist/gridstack.min.css";
-*/
-/* Optional styles for demos */
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.footer-left {
+  margin-left: 1em;
+/* margin-left: auto; */
+/* text-align: right; */
+  float: left;
+}
+.footer-right {
+  margin-right: 3em;
+/* margin-left: auto; */
+/* text-align: right; */
+  float: right;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #007bff;
@@ -26,7 +57,13 @@
 .dropdown:parent {
 	margin: auto;
 }
+.dropdown-header {
+  margin-top: -2px;
+}
 
+#clientIdSelectorButton {
+  width: 180px;
+}
 a {
   text-decoration: none;
 }
@@ -37,13 +74,33 @@ h1 {
 }
 
 .grid-stack {
-  background: #e9ecef;
+  background: #eff6fd;
+}
+.jumbotron {
+  background: #eff6fd;
 }
 
 .grid-stack-item-content {
   color: #2c3e50;
   text-align: center;
-  background-color: #eff6fd;
+/*  background-color: #eff6fd; 
+  background-color: rgba(100, 190, 215, 0);*/
+}
+.grid-stack-item {
+ /*  background-color: rgba(100, 190, 215, 0.1);
+ border-radius: 5px; 
+  box-shadow: 2px 2px 2px rgba(100, 100, 100, 0.5); */
+   border: 1px solid transparent;
+}
+
+
+.grid-stack-item:hover {
+  border-style: dashed;
+  border-width: 1px;
+  border-color: rgba(5, 162, 255, 0.38);
+/*  background-color: rgba(100, 190, 215, 0.1);
+ border-radius: 5px; 
+  box-shadow: 2px 2px 2px rgba(100, 100, 100, 0.5); */
 }
 
 #addWidgetPlusSvg {
@@ -82,3 +139,32 @@ h1 {
 .config-group-fixed-width {
     width: 24em;
 }
+
+.ui-draggable-dragging {
+  z-index: 1042 !important;
+}
+
+.grid-stack-item-removing {
+  opacity: 0.8;
+  filter: blur(5px);
+
+}
+
+.ui-configure-button {
+  mask: url('/images/tool-gear.svg');
+  -webkit-mask:url('/images/tool-gear.svg');
+   -webkit-mask-size: cover;
+  mask-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgb(110, 113, 110);
+  background-size: 14px 14px;
+  border: none;
+  width: 16px;
+  height: 16px;
+  bottom: 2px;
+  right: 30px;
+  display: none;
+  position: absolute;
+}
+

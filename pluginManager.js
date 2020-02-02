@@ -1,4 +1,4 @@
-
+"use strict";
 const { readdirSync, statSync,readFileSync } = require('fs')
 const { join } = require('path')
 

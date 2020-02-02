@@ -13,6 +13,8 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@0.6.0/dist/gridstack.min.css" />
   <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/spectrum.css" />
+  <link rel="stylesheet" href="/css/sprite.css" />
     <!-- Custom styles for this template -->
     <!-- link href="navbar-top-fixed.css" rel="stylesheet" -->
   </head>
@@ -33,16 +35,16 @@
 
           <li class="nav-item active">
 
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                ClientID
+            <div class="dropdown dropdown-header" id="clientIdSelectorContainer">
+              <span style="color: #b0bfcc;"> ClientID</span>
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="clientIdSelectorButton">
+                --
               </button>
 
-             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-menu dropdown-menu-clientID" aria-labelledby="dropdownMenuButton" id="clientIdSelector">
+                <button type="button" class="dropdown-item dropdown-item-clientid" name="--">--</button>
               </div>
+
             </div>
 
           </li>
@@ -50,17 +52,39 @@
           <li class="nav-item">
             <a class="nav-link disabled" href="#">|</a>
           </li>
-           <li class="nav-item">
+          <li class="nav-item">
              <button type="button" class="btn" id="btnAddWidget">
-                      <svg id="addWidgetPlusSvg" width="1in" height="1in" version="1.1" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g transform="translate(-2,-3)"><path shape-rendering="optimizeQuality" d="m50 87.5c20.7 0 37.5-16.8 37.5-37.5s-16.8-37.5-37.5-37.5-37.5 16.8-37.5 37.5 16.8 37.5 37.5 37.5zm0-72c19 0 34.5 15.5 34.5 34.5s-15.5 34.5-34.5 34.5-34.5-15.5-34.5-34.5 15.5-34.5 34.5-34.5z"/><path shape-rendering="optimizeQuality" d="m33 52h15v15c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5v-15h16c0.8 0 1.5-0.7 1.5-1.5s-0.7-1.5-1.5-1.5h-16v-16c0-0.8-0.7-1.5-1.5-1.5s-1.5 0.7-1.5 1.5v16h-15c-0.8 0-1.5 0.7-1.5 1.5s0.7 1.5 1.5 1.5z"/></g></svg>
-  </button>
-<!--              <a class="navbar-brand" href="#">
-                  <svg id="addWidgetPlusSvg" width="1in" height="1in" version="1.1" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata><g transform="translate(-2,-3)"><path shape-rendering="optimizeQuality" d="m50 87.5c20.7 0 37.5-16.8 37.5-37.5s-16.8-37.5-37.5-37.5-37.5 16.8-37.5 37.5 16.8 37.5 37.5 37.5zm0-72c19 0 34.5 15.5 34.5 34.5s-15.5 34.5-34.5 34.5-34.5-15.5-34.5-34.5 15.5-34.5 34.5-34.5z"/><path shape-rendering="optimizeQuality" d="m33 52h15v15c0 0.8 0.7 1.5 1.5 1.5s1.5-0.7 1.5-1.5v-15h16c0.8 0 1.5-0.7 1.5-1.5s-0.7-1.5-1.5-1.5h-16v-16c0-0.8-0.7-1.5-1.5-1.5s-1.5 0.7-1.5 1.5v16h-15c-0.8 0-1.5 0.7-1.5 1.5s0.7 1.5 1.5 1.5z"/></g></svg>
-         
-              </a> -->
- 
-
+              <span class="icon icon-hoverable icon-plus"></span>
+              </button>
           </li>
+          <li class="nav-item">
+             <button type="button" class="btn" id="btnSave" style="color: white;">
+                <span class="icon icon-hoverable icon-download3 "></span>
+              </button>
+          </li>
+          <li class="nav-item">
+             <button type="button" class="btn" id="btnDownload" style="color: white;">
+                <span class="icon icon-hoverable icon-cloud-download"></span>
+              </button>
+          </li>
+          <li class="nav-item">
+             <button type="button" class="btn" id="btnUpload" style="color: white;">
+                <span class="icon icon-hoverable icon-cloud-upload"></span>
+              </button>
+              <input type="file" id="uploadFileInput"  accept="application/json" style="display:none" onchange="window.handleUploadFiles(this.files)">
+          </li>
+ 
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">|</a>
+          </li>
+
+          <li class="nav-item">
+            <button type="button" class="btn" id="btnTrashWidget">
+              <span class="icon icon-bin"></span>
+            </button>
+          </li>
+
+
                    
 <!--
           <li class="nav-item active">
@@ -76,7 +100,7 @@
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-          <img src="/images/swi-logo.png">
+          <img src="/images/wink2.svg">
       </div>
 
 

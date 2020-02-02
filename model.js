@@ -1,3 +1,4 @@
+"use strict";
 // based on https://github.com/oauthjs/express-oauth-server/blob/master/examples/memory/model.js
 
 /**
@@ -12,7 +13,7 @@ function InMemoryCache() {
         grants: ['client_credentials'],
       }];
   this.tokens = [];
-  this.users = [{ id : '123', username: 'thomseddon', password: 'nightworld' }];
+  this.users = [{ id : '1', username: 'demosuser', password: 'Pa$$w0rd' }];
 }
 
 /**

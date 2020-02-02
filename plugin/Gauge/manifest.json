@@ -1,0 +1,7 @@
+{
+	"name" : "Circular Gauge",
+	"description" : "A Gauge with configurable vectors. Range is selfadjusting. Based on https://bernii.github.io/gauge.js/.",
+	"version" : "0.0.1",
+	"type": "widget",
+	"defaultconfig": {  "uuid": "", "datasource" : "", "caption" : "", "minVal" : 0, "maxVal" : 100, "displayLables": true, "segment": [ { "min": 0, "max": 100, "strokeStyle": "rgb(0,255,0)"} ] }
+}

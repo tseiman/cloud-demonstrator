@@ -1,0 +1,548 @@
+  
+<style type="text/css">
+ .stringField-NotOk {
+  color: red;
+ }
+ .stringField-Ok {
+  color: green;
+ }
+.grpTableInputGroups {
+
+}
+.grpTableInputGroupsItems { 
+  margin-top: -15px;
+}
+.grpTableInputGroupsTitle {
+  margin: 10px;
+}
+
+.btnTableAddSegmentClass {
+  float: right;
+}
+.inputRadioTable {
+  margin-left: 14px;
+}
+
+#grpTableSegements{
+    border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+#btnTableTrashWidget {
+  float:right;
+
+}
+.btnTableTrashWidgetIcon {
+  margin-top: -1px;
+}
+#btnTableTrashWidget:hover {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+}
+#btnTableTrashWidget.disabled:hover {
+  filter: none;
+}
+
+.btnTableAlign {
+  margin: 15px;
+}
+.btnTableAlignText {
+  transform: rotate(180deg);
+}
+</style>
+<link href="/plugin/Table/all.css" rel="stylesheet" />
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Caption</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Caption" aria-label="CAPTION" aria-describedby="basic-addon1" accepted-input="^.+$" isOk="false" name="caption"  value="<%- caption %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Delete Roule</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringFieldB64-checkable" id="delteTableRule" placeholder="data.commannd === 'delete'" aria-label="Delte" 
+          aria-describedby="basic-addon1" accepted-input="^.*$" isOk="true" name="deleterule"  value="<%- window.atob(deleterule) %>" disabled>
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+   <div class="inputRadioTable">Expression must be true or false. Environment variable is &quot;data&quot; whiche gives access to the full incomming message. This is only available when data substitution is enabled.</div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" >Row color rule</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringFieldB64-checkable" placeholder="if(data['data.temperature'] > 20) { return '#ff0000'; } else { return '#00ff00';}" aria-label="ColorRule" 
+              aria-describedby="basic-addon1" accepted-input="^.*$" isOk="true" name="colorrule"  value="<%- window.atob(colorrule) %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+  <div class="inputRadioTable">Give here a javascript based rule to color a row. Environment variables are &quot;col&quot; an index giving the column which is updated and the &quot;data&quot; variable for the data. The rule should return a CSS compatible color.</div>
+</div>
+<input type="radio" id="updateTableRadioGrp-No" name="updateTableRadioGrp" value="No" class="inputRadioTable">
+<label for="updateTableRadioGrp">Simply appending to table - don't substitute existing entries</label> 
+
+<hr />
+<div id="grpTableSegements" >
+  <div class="grpTableInputGroups">
+    <h6 class="grpTableInputGroupsTitle">
+      Column #1
+    </h6>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width" >Column Headline</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="ColumnHead" aria-label="ColumnHead" aria-describedby="basic-addon1" accepted-input="^.+$" 
+                                                                                                                                                                                  isOk="false" name="col[0].colhead" value="<%- col[0].colhead %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <div class="input-group mb-3 grpTableInputGroupsItems">
+      <div class="input-group-prepend">
+        <span class="input-group-text config-group-fixed-width" >Data source</span>
+      </div>
+      <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\[\]]+$" 
+                                                                                                                                                                                  isOk="false" name="col[0].datasource" value="<%- col[0].datasource %>">
+      <div class="input-group-append">
+        <span class="input-group-text"></span>
+      </div>
+    </div>
+    <input type="radio" id="updateTableRadioGrp-1" name="updateTableRadioGrp" value="0" class="inputRadioTable">
+    <label for="updateTableRadioGrp-1">Substitute a dataset in the table if this column matches it's related newdata</label> 
+    <input type="checkbox" id="sortableTableCheck-1" name="col[0].sortable" class="inputRadioTable inputCheckSortableTable" checked>
+    <label for="sortableTableCheck-1">Sortable ?</label>
+ 
+    <div class="btn-group btn-group-toggle btnTableAlign" data-toggle="buttons">
+      <label class="btn btn-secondary">
+        <input type="radio" name="col[0].align" value="left" autocomplete="off" class="tabelColAlignSelectBtn alignableTableCheck-1" ><i class="fa fa-align-right btnTableAlignText"></i>
+      </label>
+      <label class="btn btn-secondary active">
+        <input type="radio" name="col[0].align" value="center" autocomplete="off" class="tabelColAlignSelectBtn alignableTableCheck-1" checked><i class="fa fa-align-center btnTableAlignText"></i>
+      </label>
+      <label class="btn btn-secondary">
+         <input type="radio" name="col[0].align" value="right" autocomplete="off" class="stabelColAlignSelectBtn alignableTableCheck-1" ><i class="fa fa-align-left btnTableAlignText"></i>
+      </label>
+    </div> 
+  </div>
+
+</div>
+<button type="button" class="btn disabled" id="btnTableTrashWidget">
+  <span class="icon icon-bin btnTableTrashWidgetIcon"></span>
+</button>
+<button type="button" class="btn btnTableAddSegmentClass" id="btnTableAddSegment">
+  <span class="icon icon-hoverable icon-plus"></span>
+</button>
+<script type="text/javascript">
+
+$( document ).ready(function() {
+  let testForArrayElement = /^.*\[[0-9]+\]\..*$/;
+  let extractArrayElement = /^(.+)\[([0-9]+)\]\.(.*)$/g;
+
+
+
+  var configData =  '<%- JSON.stringify(col) %>'; // '< % - JSON.stringify(line) % >';
+  var configDataJSON = JSON.parse( configData);
+
+
+  function generateHTML(numSegmentItems,segmentIndex,colhead,datasource) {
+    var html = `
+
+      <hr style="width: 100%" />
+      <div class="grpTableInputGroups" id="grpTableInputGroups-${numSegmentItems}">
+          <h6 class="grpTableInputGroupsTitle">
+            Column #${numSegmentItems}
+          </h6>
+           <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width" >Column Headline</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="ColumnHead" aria-label="ColumnHead" aria-describedby="basic-addon1" accepted-input="^.+$" 
+                                                                                                                                                                                        isOk="false" name="col[${segmentIndex}].colhead" value="${colhead}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>         
+          <div class="input-group mb-3 grpTableInputGroupsItems">
+            <div class="input-group-prepend">
+              <span class="input-group-text config-group-fixed-width" >Data source</span>
+            </div>
+            <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" 
+                                                                          aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\\[\\]]+$" isOk="false" name="col[${segmentIndex}].datasource" value="${datasource}">
+            <div class="input-group-append">
+              <span class="input-group-text"></span>
+            </div>
+          </div>
+          <input type="radio" id="updateTableRadioGrp-${numSegmentItems}" name="updateTableRadioGrp" value="${numSegmentItems}"  class="inputRadioTable">
+          <label for="updateTableRadioGrp-${numSegmentItems}">Substitute a dataset in the table if this column matches it&#39;s related newdata</label> 
+          <input type="checkbox" id="sortableTableCheck-${numSegmentItems}" name="col[${segmentIndex}].sortable" class="inputRadioTable inputCheckSortableTable" checked>
+          <label for="sortableTableCheck-${numSegmentItems}">Sortable ?</label> 
+ 
+          <div class="btn-group btn-group-toggle btnTableAlign" data-toggle="buttons">
+            <label class="btn btn-secondary">
+              <input type="radio" name="col[${segmentIndex}].align" value="left" autocomplete="off" class="tabelColAlignSelectBtn alignableTableCheck-${numSegmentItems}" ><i class="fa fa-align-right btnTableAlignText"></i>
+            </label>
+            <label class="btn btn-secondary active">
+              <input type="radio" name="col[${segmentIndex}].align" value="center" autocomplete="off" class="tabelColAlignSelectBtn alignableTableCheck-${numSegmentItems}"><i class="fa fa-align-center btnTableAlignText"></i>
+            </label>
+            <label class="btn btn-secondary">
+               <input type="radio" name="col[${segmentIndex}].align" value="right" autocomplete="off" class="stabelColAlignSelectBtn alignableTableCheck-${numSegmentItems}" ><i class="fa fa-align-left btnTableAlignText"></i>
+            </label>
+          </div> 
+        </div>
+        </div>
+
+    `;
+    return html;
+  }
+
+// -------------------------------------------------------------
+function updateAColItem(fullName,val) {
+
+// console.log("updating:", fullName,val);
+
+  extractArrayElement.lastIndex = 0;
+  let arrayElement = extractArrayElement.exec(fullName);
+  let prefix = arrayElement[1];
+  let index = arrayElement[2];
+  let name = arrayElement[3];
+
+  let localConfig = window.newWidget.getConfig();
+
+  if(typeof localConfig[prefix] === 'undefined') {
+    window.newWidget.setConfig(prefix,[]);          
+  }
+
+  localConfig = window.newWidget.getConfig();
+  var localConfigSegment = localConfig[prefix]; 
+
+  if(typeof localConfigSegment[index] === 'undefined') {
+    localConfigSegment[index] = {}; 
+    window.newWidget.setConfig(prefix,localConfigSegment);
+  }
+
+  localConfig = window.newWidget.getConfig();
+  localConfigSegment = localConfig[prefix];
+
+
+  localConfigSegment[index][name] = val;
+
+  window.newWidget.setConfig(prefix,localConfigSegment);
+
+}
+// -------------------------------------------------------------
+
+  function stringFieldConfigIsAllOk() {
+    var isOk = true;
+    $( ".stringField-checkable" ).each(function( index ) {
+
+   //   console.log("stringFieldConfigIsAllOk:", $(this).attr("name"),$(this).val(),$(this).attr("isOk"));
+
+        isOk = ($(this).attr("isOk") !== "false") && isOk;
+        if($(this).attr("isOk") !== "false") {
+
+          if(testForArrayElement.test($(this).attr("name"))) {
+            updateAColItem($(this).attr("name"),$(this).val());
+                            
+          } else {
+            window.newWidget.setConfig($(this).attr("name"),$(this).val());          
+
+          }
+        }
+//          console.log("newWidget : ", window.newWidget);
+
+    });
+    if(!isOk) {    
+      $('#btnConfWidgetNext').attr('disabled',true);
+      return;
+    }
+
+    $('#btnConfWidgetNext').removeAttr('disabled');
+  }
+
+// -------------------------------------------------------------
+
+  function stringFieldConfigInputCheck(element,value) {
+
+    var match = RegExp($(element).attr("accepted-input")).test(value);
+
+ //    console.log("stringFieldConfigInputCheck:", $(element).attr('name'),$(element).attr("accepted-input"),value,match);
+
+    if(match) {
+      $(element).nextAll().find(".input-group-text").html("&#10003;").removeClass( "stringField-NotOk" ).addClass( "stringField-Ok" );
+      $(element).attr("isOk","true");
+    } else {
+      $(element).nextAll().find(".input-group-text").html("&#10008;").removeClass( "stringField-Ok" ).addClass( "stringField-NotOk" );
+      $(element).attr("isOk","false");
+    }
+//    stringFieldConfigIsAllOk();
+  }
+
+// -------------------------------------------------------------
+
+function checkBoxConfigInputCheck() {
+   $( ".checkBox-checkable" ).each(function( index ) {
+      window.newWidget.setConfig($(this).attr("name"),$(this).is( ":checked" )); 
+   });
+ }
+
+
+// -------------------------------------------------------------
+
+function checkSortAbleCheckbox() {
+
+    //  window.newWidget.setConfig($(this).attr("name"),$(this).is( ":checked" )); 
+}
+
+
+
+
+// -------------------------------------------------------------
+
+
+  $(".stringFieldB64-checkable").on('input',function() {
+ //   console.log("delete rule", window.btoa($(this).val()));
+    window.newWidget.setConfig($(this).attr("name"),window.btoa($(this).val()));         
+    stringFieldConfigIsAllOk();
+  });
+
+  $(".stringFieldB64-checkable").focusout(function() {
+//    console.log("delete rule", window.btoa($(this).val()));
+    window.newWidget.setConfig($(this).attr("name"),window.btoa($(this).val()));         
+    stringFieldConfigIsAllOk();
+  });
+
+
+
+  $(".stringField-text-input").on('input',function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+    stringFieldConfigIsAllOk();
+  });
+
+  $(".stringField-text-input").focusout(function() {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+  $(".checkBox-checkable").click( function(){
+       checkBoxConfigInputCheck();
+  });
+  $(".stringField-text-input").each(function(index) {
+    stringFieldConfigInputCheck(this, $(this).val());
+  });
+
+  $('input:radio[name="updateTableRadioGrp"]').change(function(){
+    window.newWidget.setConfig("substitutebykey",$(this).val());
+    if($(this).val() === 'No') {
+      $('#delteTableRule').prop('disabled',true);
+    } else {
+      $('#delteTableRule').prop('disabled',false);
+    } 
+  });
+
+
+  $('input:radio[name="updateTableRadioGrp"]').change(function(){
+    window.newWidget.setConfig("substitutebykey",$(this).val());
+     if($(this).val() === 'No') {
+      $('#delteTableRule').prop('disabled',true);
+    } else {
+      $('#delteTableRule').prop('disabled',false);
+    }    
+  });
+
+
+  $("#sortableTableCheck-1").click( function(){
+    updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+  });
+
+  $(".alignableTableCheck-1").click( function(){
+    updateAColItem($(this).attr("name"),$(this).attr("value"));          
+  });
+
+
+ 
+  checkBoxConfigInputCheck();   
+  stringFieldConfigIsAllOk();
+
+
+// -------------------------------------------------------------
+
+
+  $('#btnTableAddSegment').on('click', function(event) {
+    let numSegmentItems = $('.grpTableInputGroupsTitle').length + 1;
+
+
+
+    let segmentIndex = numSegmentItems -1;
+    var html = generateHTML(numSegmentItems,segmentIndex,"","");
+
+    let localConfig = window.newWidget.getConfig();
+    let localConfigSegment = localConfig["col"];
+    localConfigSegment.push({ "colhead": "", "datasource": "", "sortable": true, "align": "center"});
+    window.newWidget.setConfig("col",localConfigSegment);
+
+
+    $("#grpTableSegements").append(html);
+
+ 
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk();
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $('input:radio[name="updateTableRadioGrp"]').change(function(){
+        window.newWidget.setConfig("substitutebykey",$(this).val());
+       if($(this).val() === 'No') {
+          $('#delteTableRule').prop('disabled',true);
+        } else {
+          $('#delteTableRule').prop('disabled',false);
+        }        
+    });
+
+
+    $("#sortableTableCheck-" + numSegmentItems).click( function(){
+      updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+    });
+
+
+    $(".alignableTableCheck-" + numSegmentItems).click( function(){
+      updateAColItem($(this).attr("name"),$(this).attr("value"));          
+    });
+
+    $("#btnTableTrashWidget").removeClass("disabled");
+
+
+  }); // add gauge segment click end
+
+// -------------------------------------------------------------
+  $('#btnTableTrashWidget').on('click', function(event) {
+    if(window.newWidget.getConfig().col.length <2 ) { return; }
+
+    let numSegmentItems = $('.grpTableInputGroupsTitle').length;
+
+
+//     console.log("REMOVE",  $("input[name='updateTableRadioGrp']:checked").val());
+
+    if($("input[name='updateTableRadioGrp']:checked").val() === `${numSegmentItems}`) {
+       $("#updateTableRadioGrp-" + numSegmentItems).prop("checked",false);
+       $("#updateTableRadioGrp-No").prop("checked",true);
+
+
+
+       window.newWidget.setConfig("substitutebykey","No");
+    }
+
+    $("#grpTableInputGroups-" + numSegmentItems).remove();
+  
+
+    let localConfig = window.newWidget.getConfig();
+    let localConfigSegment = localConfig["col"];
+    localConfigSegment.pop();
+    window.newWidget.setConfig("col",localConfigSegment);
+
+
+    if(numSegmentItems < 3) {
+      $("#btnTableTrashWidget").addClass("disabled");
+    } 
+    
+  });
+// -------------------------------------------------------------
+
+
+  for(var i = 1; i < configDataJSON.length ; i++) {
+
+    var obj = configDataJSON[i];
+//   function generateHTML(numSegmentItems,segmentIndex,colhead,datasource) {
+//  console.log("generateHTML" ,i +1,i,obj.colhead,obj.datasource);
+
+    var html = generateHTML(i +1,i,obj.colhead,obj.datasource);
+    $("#grpTableSegements").append(html);
+
+    $("#sortableTableCheck-" + (i +1)).prop('checked', obj.sortable);
+
+    $(".alignableTableCheck-" + (i +1)).each(function(index) {
+//      console.log("Align Check", $(this).attr("value"), obj.align);
+      if($(this).attr("value") === obj.align) {
+        $(this).parent().addClass("active");
+      } else {
+        $(this).parent().removeClass("active");
+      }
+    }); 
+
+    $(".stringField-text-input").each(function(index) {
+      stringFieldConfigInputCheck(this, $(this).val());
+    }); 
+    stringFieldConfigIsAllOk()
+    $(".stringField-text-input").on('input',function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+
+    $(".stringField-text-input").focusout(function() {
+      stringFieldConfigInputCheck(this, $(this).val());
+      stringFieldConfigIsAllOk();
+    });
+    $('input:radio[name="updateTableRadioGrp"]').change(function(){
+      window.newWidget.setConfig("substitutebykey",$(this).val());
+      if($(this).val() === 'No') {
+        $('#delteTableRule').prop('disabled',true);
+      } else {
+        $('#delteTableRule').prop('disabled',false);
+      } 
+    });
+
+
+    $(".checkBox-checkable").click( function(){
+         checkBoxConfigInputCheck(this, $(this).is( ":checked" ));
+    });
+
+
+   $("#sortableTableCheck-" + (i+1)).click( function(){
+      updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+    });
+
+
+    $(".alignableTableCheck-" + (i+1)).click( function(){
+      updateAColItem($(this).attr("name"),$(this).attr("value"));          
+    });
+
+    $("#btnTableTrashWidget").removeClass("disabled");
+
+
+  }
+
+  // -------------------------------------------------------------
+
+    $("#sortableTableCheck-1").prop('checked', configDataJSON[0].sortable);
+
+    $(".alignableTableCheck-1").each(function(index) {
+    //  console.log("Align Check", $(this).attr("value"), configDataJSON[0].align);
+      if($(this).attr("value") === configDataJSON[0].align) {
+        $(this).parent().addClass("active");
+      } else {
+        $(this).parent().removeClass("active");
+      }
+    }); 
+  
+  $("input[name='updateTableRadioGrp'][value='<%- substitutebykey %>']").attr("checked","checked");
+
+  
+  if('<%- substitutebykey %>' === 'No') {
+      $('#delteTableRule').prop('disabled',true);
+  //    console.log("aaaaaaaaaaaa--<%- deleterule %>--");
+   } else {
+      $('#delteTableRule').prop('disabled',false);
+  //    console.log("aaaaaaaaaaaa2--<%- deleterule %>--");
+   } 
+
+}); // document ready from begin onf the script section
+</script>

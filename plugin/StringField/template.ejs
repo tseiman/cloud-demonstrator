@@ -1,0 +1,14 @@
+<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="2" style="background-color: <%- data.bgColor %>;" id="<%- data.uuid %>">
+    <div class="grid-stack-item-content" style="background-color: <%- data.bgColor %>; color: <%- data.color %>;">
+      	<h5><%- data.caption %></h5>
+      	<h1 class="fittableText">n/a</h1>
+		<!-- button class="ui-icon ui-configure-button  ui-resizable-autohide"></button -->
+	</div>
+	<script type="text/javascript">
+		$(".fittableText").fitText(0.38);
+		window.setToolIconToGridItems("<%- data.uuid %>");
+		
+	</script>
+
+
+</div>

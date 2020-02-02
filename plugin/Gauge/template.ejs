@@ -1,0 +1,67 @@
+<div class="grid-stack-item" data-gs-x="0" data-gs-y="0" data-gs-width="4" data-gs-height="3" id="<%- data.uuid %>">
+    <div class="grid-stack-item-content" >
+      	<h5><%- data.caption %></h5>
+		<canvas id="gaugeCanvas-<%- data.uuid %>"></canvas>
+
+	</div>
+	<script src="/plugin/Gauge/gauge.min.js"></script>
+	<script type="text/javascript">
+		var staticZonesData = '<%- data.strSegments %>';
+		var staticZonesDataJSON = JSON.parse( staticZonesData);
+		var displayLables = <%- data.displayLables %>;
+
+
+
+   // width="300" height="160" 
+//console.log("staticZonesDataJSON", staticZonesDataJSON);
+//    demoGauge = new Gauge(document.getElementById("canvas-preview"));
+
+	var target = document.getElementById('gaugeCanvas-<%- data.uuid %>'); 
+	var demoGauge = new Gauge(target);
+	var staticLabels = null;
+
+	if(displayLables && (staticZonesDataJSON.length > 0)) {
+    	var labels = [];
+    	for(var i = 0; i < staticZonesDataJSON.length ; i++) {
+    		labels.push(parseInt(staticZonesDataJSON[i].max));
+    	}
+    	staticLabels = {
+    		font: "10px sans-serif",
+	        labels: labels,
+	        fractionDigits: 0
+    	};
+    	
+    }
+
+	    var opts = {
+	      angle: -0.25,
+	      lineWidth: 0.2,
+	      radiusScale: 1.1,
+	      pointer: {
+	        length: 0.6,
+	        strokeWidth: 0.05,
+	        color: '#000000'
+	      },
+	      staticLabels: staticLabels, 
+	      staticZones: staticZonesDataJSON,
+	      limitMax: false,
+	      limitMin: false,
+	      highDpiSupport: true
+	    };
+    demoGauge.setOptions(opts);
+
+  //  demoGauge.setTextField(document.getElementById("preview-textfield"));
+    demoGauge.minValue = <%- data.minVal %>;
+    demoGauge.maxValue = <%- data.maxVal %>;
+    demoGauge.set(0);
+
+
+	$("#gaugeCanvas-<%- data.uuid %>").data('gauge',demoGauge);
+	
+		
+//	window.setToolIconToGridItems("<%- data.uuid %>");
+		
+	</script>
+
+
+</div>

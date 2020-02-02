@@ -1,4 +1,7 @@
+"use strict";
+
 const chalk = require('chalk');
+
 
 function labelColorizer(options) {
     return (inp) => {
@@ -53,12 +56,14 @@ require('console-stamp')(console, {
 var frontend = require('./frontend-app');
 var backend = require('./backend-app');
 var ws = require('./frontend-ws');
+var EventBroker = require('./eventBroker');
 
-
+var eventBroker = new EventBroker();
 
 /* ==== Here the backend OAuthAuthenticated Service starts ===== */
 
-backend.setup();
+
+backend.setup(eventBroker);
 
 /* =============== Here the frontend Service starts ============ */
 
@@ -66,4 +71,4 @@ frontend.setup();
 
 /* =============== Starting WebSocket for frontend ============ */
 
-ws.setup();
+ws.setup(eventBroker);

@@ -1,0 +1,7 @@
+{
+	"name" : "Line Chart",
+	"description" : "A line chart - which can have multiple lines in one graph based on https://www.chartjs.org/",
+	"version" : "0.0.1",
+	"type": "widget",
+	"defaultconfig": {  "uuid": "", "caption" : "", "maxDataPoints": 200, "timesource" : "", "line": [ { "name": "", "datasource": "", "strokeStyle": "rgb(0,255,0)"} ] }
+}
