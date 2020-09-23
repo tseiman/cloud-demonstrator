@@ -18,12 +18,13 @@
   },
   "dependencies": {
     "ejs": "^1.0.0",
-    "express-oauth-server": "2.0.0",
+    "express-oauth-server": ">=2.0.0",
     "socket.io": "2.3.0",
     "underscore": "1.9.0",
     "console-stamp": "0.2.9",
     "js-sha512": "0.8.0",
-    "socketio-auth": "0.1.1"
+    "socketio-auth": "0.1.1",
+    "config": ">=3.3.1"
   },
   "devDependencies": {
     "dotenv": "8.2.0",
