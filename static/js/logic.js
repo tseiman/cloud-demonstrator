@@ -100,7 +100,7 @@ let error = null;
         socket.disconnect();
         console.log('show modal');
 
-//    setTimeout(function(){$('#passwdDialog').modal('show')}, 100); 
+    setTimeout(function(){$('#passwdDialog').modal('show')}, 100); 
 
     });
 

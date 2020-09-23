@@ -4,10 +4,15 @@ export default class {
     console.log("instantiating Event Broker");
     this.callback = newClientIDcallback;
     this.filter = "--";
+    this.debug = false;
+
+    if(new URLSearchParams(window.location.search).get('eventDEBUG') === 'true') {  // append  ?...&eventDEBUG=true to the URL to get debug outut from this event broker
+        this.debug = true;
+    }
   }
 
   handleIncommingMessage(msg) {
-//    console.log("got message in handleIncommingMessage", msg,window.globalWidgetList);
+    if(this.debug) { console.log("got message in handleIncommingMessage", msg,window.globalWidgetList); }
 
     if(msg.clientid != null) {
       if(!(msg.clientid in window.globalClientList)) {
