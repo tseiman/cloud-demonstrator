@@ -1,19 +1,52 @@
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * A default configuration, please adjust to your needs
+ *
+ **/
+
+
 {
-  "frontend": {
-  	"webuiport": 3001,
-  	"websocketport": 3002,
-  	"users": [
+  "frontend": {						// all regarding WebUI and WebUI access
+  	"webuiport": 3001,				// the port the browser can access the WebUI
+  	"websocketport": 3002,			// the websocket port to communicate between WebUI and Websocket server (DON'T CHANGE!, the WebUI client is not configureable yet)
+  	"uselogin": false,				// the WebUI can show a simple modal login - before the Websocket will not send data. This can be disabled here. 
+  	"users": [						// For the WebUI login a small set of users can be configured
 	      {
-	      	"id": 1,
-	      	"name": "demouser",
-	      	"passwordhashSHA384": "504f008c8fcf8b2ed5dfcde752fc5464ab8ba064215d9c5b5fc486af3d9ab8c81b14785180d2ad7cee1ab792ad44798c"  // 1234
+	      	"id": 1,				// a user ID - must be unique in the array of users
+	      	"name": "demouser",		// user name, just use some characters and numbers. Fancy additional characters have not been tested.
+	      	"passwordhashSHA384": "504f008c8fcf8b2ed5dfcde752fc5464ab8ba064215d9c5b5fc486af3d9ab8c81b14785180d2ad7cee1ab792ad44798c"  // put here the SHA384 hashed password - here the test account has "1234" (without quotes)
 	      }
-	 ]
-  },
-  "backend": {
-  	"mode": "passive",	   	// if passive it will open apiport below and wait for JSOn Posts, in active it will connect to WS server
-  	"apiport": 3000
-  }
+	 ]  							// END of frontend users list
+  
+  }, 								// END of frontend configuration
 
 
-}
+  "backend": {  					// all about the backend configuration
+  	"apiport": 3000,				// this is the API port where a remote Server can send JSON to
+  	"oauthcredentials": {
+			"clientcredentials": [
+      			{ 
+        			"clientId" : "dummy-client-id",
+        			"clientSecret" : "dummy-client-secret",
+        			"redirectUris" : [""],
+        			"grants": ["client_credentials"],
+      			}
+      		],
+      		"apiuser": [
+      			{ 
+      				"id" : 1,
+      				"username": "demosuser", 
+      				"password": "Pa$$w0rd" 
+      			}
+      		]
+  	}  								// END of oauth credentials
+
+  } 								// END of Backend config
+
+
+}  									// EOF
