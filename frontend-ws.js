@@ -1,3 +1,18 @@
+
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * This connects the Browser WebUI via socketIO library (may using WebSocket or long poll)
+ * to the EventBroker. Events received from the EventBroker are forwarded via SocketIO (e.g. WebSocket)
+ * to the browser. On that side the ClientEventBroker will receive the message over SocketIO (WebSocket) 
+ * and distribute it to the widgets.
+ *
+ **/
+
 "use strict";
 
 const http = require('http');
@@ -5,10 +20,14 @@ const io = require('socket.io')();
 const socketAuth = require('socketio-auth');
 const sha384 = require('js-sha512').sha384;
 const resolve = require('path').resolve;
+const config = require('config');
+
+const frontendConf = config.get('frontend');
+
+
 
 const pluginManager = require('./pluginManager');
 
-const wsPort = 3002;
 
 
 const server = http.createServer();
@@ -30,18 +49,15 @@ async function verifyUser (data) {
     // setTimeout to mock a cache or database call
 	    setTimeout(() => {
 	      // this information should come from your cache or database
-	      const users = [
-	      {
-	      	id: 1,
-	      	name: 'Thomas',
-	      	passwordhashSHA384: '8a65f1ace201d1a3ddaed9102be20fd75273075b4a59124529c0e85104568e81e02ebdac4183f176a1cb24ec7d125e54',
-	      },
-	      ];
 
 	      try {
-	//		const user =  users.find((user) => user.passwordhashSHA384 === sha384(data.password));
+	      	var user = null;
+	      	if(frontendConf.uselogin) {
+				user =  frontendConf.users.find((user) => user.passwordhashSHA384 === sha384(data.password));
 
-			const user =  users[0];
+	      	} else { 
+	      		user =  frontendConf.users[0];  // in case login is disabled in config/default.json we just use the default user
+	      	}
 
 			// console.log(data);
 
@@ -101,7 +117,7 @@ socketAuth(io, {
 module.exports = {
 	setup: function (eBroker) {
 		eventBroker = eBroker;
-		server.listen(wsPort, ()=>console.info(`frontent socket.io listening to port ${wsPort}`));
+		server.listen(frontendConf.websocketport, ()=>console.info(`frontent socket.io listening to port ${frontendConf.websocketport}`));
 
 
 

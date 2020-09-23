@@ -4,7 +4,7 @@
     "uuid": "1e2cb1a5-136d-4d35-8826-f68d8434946b",
     "config": {
       "uuid": "1e2cb1a5-136d-4d35-8826-f68d8434946b",
-      "caption": "Temperatur/Luftfeuchtigkeit",
+      "caption": "Temperature/Huminity",
       "minVal": "0",
       "maxVal": "100",
       "maxDataPoints": "200",
@@ -62,65 +62,9 @@
     },
     "geometry": {
       "x": 1,
-      "y": 0,
+      "y": 5,
       "width": 4,
       "height": 3
-    }
-  },
-  "ca0c887f-edfd-4164-93b3-601bf11a792e": {
-    "plugin": "StringField",
-    "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e",
-    "config": {
-      "datasource": "data.temperature",
-      "bgColor": "rgb(255, 174, 174)",
-      "color": "#202020",
-      "unit": "°C",
-      "caption": "Temperature",
-      "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e"
-    },
-    "geometry": {
-      "x": 1,
-      "y": 8,
-      "width": 4,
-      "height": 2
-    }
-  },
-  "c6ff2068-9fa6-4f13-b00d-821a2a5fefde": {
-    "plugin": "Table",
-    "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
-    "config": {
-      "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
-      "caption": "Temperatur/Luftfeuchtigkeit",
-      "substitutebykey": "2",
-      "colorrule": "aWYoZGF0YVsnZGF0YS50ZW1wZXJhdHVyZSddID4gMjApIHsgcmV0dXJuICdyZ2JhKDE5MSwgNzQsIDYzLCAwLjI3KSc7IH0gZWxzZSB7IHJldHVybiAncmdiYSg2NSwgMTkxLCA2MywgMC4yNyknO30=",
-      "col": [
-        {
-          "colhead": "Zeit",
-          "datasource": "time",
-          "sortable": true,
-          "align": "center"
-        },
-        {
-          "colhead": "Temperatur",
-          "datasource": "data.temperature",
-          "sortable": true,
-          "align": "center"
-        },
-        {
-          "colhead": "Luftfeuchtigkeit",
-          "datasource": "data.huminity",
-          "sortable": true,
-          "align": "center"
-        }
-      ],
-      "deleterule": "aWYoZGF0YS5jb21tYW5kID09PSdkZWxldGUnKSB7IHJldHVybiBkYXRhLmRhdGEudGVtcGVyYXR1cmU7IH0gZWxzZSB7cmV0dXJuIG51bGw7fQ==",
-      "delterule": ""
-    },
-    "geometry": {
-      "x": 0,
-      "y": 0,
-      "width": 12,
-      "height": 7
     }
   },
   "cb307912-5d8b-4bab-8113-1c0f7d7e07a2": {
@@ -160,9 +104,65 @@
     },
     "geometry": {
       "x": 7,
-      "y": 0,
+      "y": 5,
       "width": 4,
       "height": 3
+    }
+  },
+  "ca0c887f-edfd-4164-93b3-601bf11a792e": {
+    "plugin": "StringField",
+    "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e",
+    "config": {
+      "datasource": "data.temperature",
+      "bgColor": "rgb(255, 174, 174)",
+      "color": "#202020",
+      "unit": "°C",
+      "caption": "Temperature",
+      "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e"
+    },
+    "geometry": {
+      "x": 1,
+      "y": 0,
+      "width": 4,
+      "height": 2
+    }
+  },
+  "c6ff2068-9fa6-4f13-b00d-821a2a5fefde": {
+    "plugin": "Table",
+    "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
+    "config": {
+      "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
+      "caption": "Temperature/Huminity",
+      "substitutebykey": "2",
+      "colorrule": "aWYoZGF0YVsnZGF0YS50ZW1wZXJhdHVyZSddID4gMjApIHsgcmV0dXJuICdyZ2JhKDE5MSwgNzQsIDYzLCAwLjI3KSc7IH0gZWxzZSB7IHJldHVybiAncmdiYSg2NSwgMTkxLCA2MywgMC4yNyknO30=",
+      "col": [
+        {
+          "colhead": "Time",
+          "datasource": "time",
+          "sortable": true,
+          "align": "center"
+        },
+        {
+          "colhead": "Temperature",
+          "datasource": "data.temperature",
+          "sortable": true,
+          "align": "center"
+        },
+        {
+          "colhead": "Huminity",
+          "datasource": "data.huminity",
+          "sortable": true,
+          "align": "center"
+        }
+      ],
+      "deleterule": "aWYoZGF0YS5jb21tYW5kID09PSdkZWxldGUnKSB7IHJldHVybiBkYXRhLmRhdGEudGVtcGVyYXR1cmU7IH0gZWxzZSB7cmV0dXJuIG51bGw7fQ==",
+      "delterule": ""
+    },
+    "geometry": {
+      "x": 0,
+      "y": 2,
+      "width": 12,
+      "height": 7
     }
   },
   "7667c291-c8e8-4a8b-b6e1-e3ed7e25eecf": {
@@ -178,7 +178,7 @@
     },
     "geometry": {
       "x": 7,
-      "y": 3,
+      "y": 0,
       "width": 4,
       "height": 2
     }

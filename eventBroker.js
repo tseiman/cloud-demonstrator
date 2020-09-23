@@ -1,5 +1,22 @@
 "use strict";
 
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * A very simple Server EventBroker class. 
+ *   Subscribers can register via registerListener(listener); 
+ *   on registration the a callback is given via listener parameter. 
+ *   The callback function should implment a message parameter. function(msg) {...}
+ *
+ *   messages are pushed to EventBroker via pushMessage(msg); the event broker will 
+ *   iterate trough all registered listeners and call the callback function for each.
+ *
+ **/
+
 
 module.exports = class EventBroker {
 

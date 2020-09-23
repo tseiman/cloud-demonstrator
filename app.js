@@ -1,6 +1,22 @@
-"use strict";
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * the main App of the WebService.
+ * It instanciates all modules required (frontend App, Frontend WS, Backend upstream).
+ * It configures also the console log.
+ *
+ **/
+
+ "use strict";
 
 const chalk = require('chalk');
+const config = require('config');
+
+const backendConf = config.get('backend');
 
 
 function labelColorizer(options) {
@@ -54,9 +70,10 @@ require('console-stamp')(console, {
 });
 
 var frontend = require('./frontend-app');
-var backend = require('./backend-app');
 var ws = require('./frontend-ws');
 var EventBroker = require('./eventBroker');
+
+var backend = require('./backend-app-upstream');
 
 var eventBroker = new EventBroker();
 

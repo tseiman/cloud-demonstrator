@@ -1,3 +1,23 @@
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * This class offers a web service where JSON can be pushed to
+ * The JSON Data might be in the format:
+ *
+ * {
+ *  clientid: 'someclientid',
+ *  time: 1600892937,
+ *  data: { temperature: 24, huminity: 65 }
+ * }
+ *
+ * the message received on the open API port is forwarded to the Server Event Broker
+ * the Service is protected by OAUth (see model.js)
+ *
+ **/
 
 "use strict";
 
@@ -6,8 +26,11 @@ var express = require('express');
 var OAuthServer = require('express-oauth-server');
 const MemoryStore = require('./model.js')
 const memoryStore = new MemoryStore()
+const config = require('config');
 
-const feederAppPort = 3000;
+const backendConf = config.get('backend');
+
+
 
 var feederApp = express();
 var eventBroker = null;
@@ -40,7 +63,7 @@ module.exports = {
 	});
 
 
-	feederApp.listen(feederAppPort, ()=>console.info(`feeder listening to port ${feederAppPort}`));
+	feederApp.listen(backendConf.apiport, ()=>console.info(`feeder listening to port ${backendConf.apiport}`));
 
   }
 };

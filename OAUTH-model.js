@@ -1,19 +1,40 @@
 "use strict";
-// based on https://github.com/oauthjs/express-oauth-server/blob/master/examples/memory/model.js
+
+/**
+ *
+ * Project: cloud-demonstrator
+ * Project Page: https://github.com/tseiman/cloud-demonstrator
+ * Author: Thomas Schmidt
+ * Date: 2020
+ * 
+ * this provides the security model for the OAuth mechanism for the backend service
+ * based on https://github.com/oauthjs/express-oauth-server/blob/master/examples/memory/model.js
+ *
+ **/
+
+
+const config = require('config');
+
+const backendConf = config.get('backend');
+
+
 
 /**
  * Constructor.
  */
 function InMemoryCache() {
-  this.clients = [
+  this.clients = backendConf.oauthcredentials.clientcredentials;
+ /* this.clients = [
       { 
         clientId : 'dummy-client-id',
         clientSecret : 'dummy-client-secret',
         redirectUris : [''],
         grants: ['client_credentials'],
       }];
+      */
   this.tokens = [];
-  this.users = [{ id : '1', username: 'demosuser', password: 'Pa$$w0rd' }];
+  this.users = backendConf.oauthcredentials.apiuser;
+  /* this.users = [{ id : '1', username: 'demosuser', password: 'Pa$$w0rd' }]; */
 }
 
 /**
