@@ -1,0 +1,186 @@
+{
+  "1e2cb1a5-136d-4d35-8826-f68d8434946b": {
+    "plugin": "LineChart",
+    "uuid": "1e2cb1a5-136d-4d35-8826-f68d8434946b",
+    "config": {
+      "uuid": "1e2cb1a5-136d-4d35-8826-f68d8434946b",
+      "caption": "Temperatur/Luftfeuchtigkeit",
+      "minVal": "0",
+      "maxVal": "100",
+      "maxDataPoints": "200",
+      "timesource": "time",
+      "line": [
+        {
+          "name": "Temperatur",
+          "datasource": "data.temperature",
+          "strokeStyle": "rgb(0,255,0)"
+        },
+        {
+          "strokeStyle": "rgb(0, 0, 255)",
+          "name": "Luftfeuchtigkeit",
+          "datasource": "data.huminity"
+        }
+      ]
+    },
+    "geometry": {
+      "x": 2,
+      "y": 0,
+      "width": 8,
+      "height": 5
+    }
+  },
+  "c0f70ab2-d0a9-4031-b4b0-fa0ff61cf3a1": {
+    "plugin": "Gauge",
+    "uuid": "c0f70ab2-d0a9-4031-b4b0-fa0ff61cf3a1",
+    "config": {
+      "uuid": "c0f70ab2-d0a9-4031-b4b0-fa0ff61cf3a1",
+      "dataSource": "",
+      "caption": "Temperature",
+      "minVal": "-20",
+      "maxVal": "100",
+      "segment": [
+        {
+          "min": "0",
+          "max": "90",
+          "strokeStyle": "rgb(0,255,0)"
+        },
+        {
+          "strokeStyle": "rgb(255, 0, 0)",
+          "min": "90",
+          "max": "100"
+        },
+        {
+          "strokeStyle": "rgb(0, 157, 255)",
+          "min": "-20",
+          "max": "0"
+        }
+      ],
+      "undefined": "on",
+      "datasource": "data.temperature",
+      "strSegments": "[{\"min\":\"0\",\"max\":\"90\",\"strokeStyle\":\"rgb(0,255,0)\"},{\"strokeStyle\":\"rgb(255, 0, 0)\",\"min\":\"90\",\"max\":\"100\"},{\"strokeStyle\":\"rgb(0, 157, 255)\",\"min\":\"-20\",\"max\":\"0\"}]",
+      "displayLables": true
+    },
+    "geometry": {
+      "x": 1,
+      "y": 0,
+      "width": 4,
+      "height": 3
+    }
+  },
+  "ca0c887f-edfd-4164-93b3-601bf11a792e": {
+    "plugin": "StringField",
+    "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e",
+    "config": {
+      "datasource": "data.temperature",
+      "bgColor": "rgb(255, 174, 174)",
+      "color": "#202020",
+      "unit": "°C",
+      "caption": "Temperature",
+      "uuid": "ca0c887f-edfd-4164-93b3-601bf11a792e"
+    },
+    "geometry": {
+      "x": 1,
+      "y": 8,
+      "width": 4,
+      "height": 2
+    }
+  },
+  "c6ff2068-9fa6-4f13-b00d-821a2a5fefde": {
+    "plugin": "Table",
+    "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
+    "config": {
+      "uuid": "c6ff2068-9fa6-4f13-b00d-821a2a5fefde",
+      "caption": "Temperatur/Luftfeuchtigkeit",
+      "substitutebykey": "2",
+      "colorrule": "aWYoZGF0YVsnZGF0YS50ZW1wZXJhdHVyZSddID4gMjApIHsgcmV0dXJuICdyZ2JhKDE5MSwgNzQsIDYzLCAwLjI3KSc7IH0gZWxzZSB7IHJldHVybiAncmdiYSg2NSwgMTkxLCA2MywgMC4yNyknO30=",
+      "col": [
+        {
+          "colhead": "Zeit",
+          "datasource": "time",
+          "sortable": true,
+          "align": "center"
+        },
+        {
+          "colhead": "Temperatur",
+          "datasource": "data.temperature",
+          "sortable": true,
+          "align": "center"
+        },
+        {
+          "colhead": "Luftfeuchtigkeit",
+          "datasource": "data.huminity",
+          "sortable": true,
+          "align": "center"
+        }
+      ],
+      "deleterule": "aWYoZGF0YS5jb21tYW5kID09PSdkZWxldGUnKSB7IHJldHVybiBkYXRhLmRhdGEudGVtcGVyYXR1cmU7IH0gZWxzZSB7cmV0dXJuIG51bGw7fQ==",
+      "delterule": ""
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 12,
+      "height": 7
+    }
+  },
+  "cb307912-5d8b-4bab-8113-1c0f7d7e07a2": {
+    "plugin": "Gauge",
+    "uuid": "cb307912-5d8b-4bab-8113-1c0f7d7e07a2",
+    "config": {
+      "uuid": "cb307912-5d8b-4bab-8113-1c0f7d7e07a2",
+      "datasource": "data.huminity",
+      "caption": "Huminity",
+      "minVal": "0",
+      "maxVal": "100",
+      "segment": [
+        {
+          "min": "0",
+          "max": "20",
+          "strokeStyle": "rgb(255, 0, 0)"
+        },
+        {
+          "strokeStyle": "rgb(255, 107, 0)",
+          "min": "20",
+          "max": "40"
+        },
+        {
+          "strokeStyle": "rgb(255, 181, 0)",
+          "min": "40",
+          "max": "60"
+        },
+        {
+          "strokeStyle": "rgb(88, 235, 88)",
+          "min": "60",
+          "max": "100"
+        }
+      ],
+      "undefined": "on",
+      "strSegments": "[{\"min\":\"0\",\"max\":\"20\",\"strokeStyle\":\"rgb(255, 0, 0)\"},{\"strokeStyle\":\"rgb(255, 107, 0)\",\"min\":\"20\",\"max\":\"40\"},{\"strokeStyle\":\"rgb(255, 181, 0)\",\"min\":\"40\",\"max\":\"60\"},{\"strokeStyle\":\"rgb(88, 235, 88)\",\"min\":\"60\",\"max\":\"100\"}]",
+      "displayLables": true
+    },
+    "geometry": {
+      "x": 7,
+      "y": 0,
+      "width": 4,
+      "height": 3
+    }
+  },
+  "7667c291-c8e8-4a8b-b6e1-e3ed7e25eecf": {
+    "plugin": "StringField",
+    "uuid": "7667c291-c8e8-4a8b-b6e1-e3ed7e25eecf",
+    "config": {
+      "datasource": "data.huminity",
+      "bgColor": "rgb(183, 183, 253)",
+      "color": "rgb(32, 32, 32)",
+      "unit": "%",
+      "caption": "Huminity",
+      "uuid": "7667c291-c8e8-4a8b-b6e1-e3ed7e25eecf"
+    },
+    "geometry": {
+      "x": 7,
+      "y": 3,
+      "width": 4,
+      "height": 2
+    }
+  }
+}

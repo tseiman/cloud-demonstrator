@@ -29,3 +29,11 @@ Building packed executables for Windwos, Linux and MacOS:
 ```
 pkg .
 ```
+
+# basic testing
+* run the NodeJS cloud-demonstrator server app with `node app.js`
+* run the Back2Back tester which feeds some data to the cloud-demonstrator by entering the test folder and run `node backend-simulator.js`. The backend simulator will now start to feed data. See the console output of the backend-simulator and of the cloud-demonstrator.
+* open the cloud-demonstrator UI from a browser by accessing http://localhost:3001 .
+* Load the browser-example-config.json from the test folder by clicking the cloud upload image in the browser UE.
+* you should see now some data comming in.
+
