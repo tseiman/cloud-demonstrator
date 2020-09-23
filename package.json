@@ -4,6 +4,11 @@
   "description": "A Cloud demonstrator with a OAuth2 Pretected JSON Feed and a WebUI updated via WebSocket",
   "main": "app.js",
   "bin": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tseiman/cloud-demonstrator.git"
+  },
+  "license": "This is free as it is",
   "scripts": {
     "lint": "jshint .",
     "test": "mocha --recursive test"
