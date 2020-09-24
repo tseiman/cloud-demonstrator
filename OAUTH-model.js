@@ -24,17 +24,8 @@ const backendConf = config.get('backend');
  */
 function InMemoryCache() {
   this.clients = backendConf.oauthcredentials.clientcredentials;
- /* this.clients = [
-      { 
-        clientId : 'dummy-client-id',
-        clientSecret : 'dummy-client-secret',
-        redirectUris : [''],
-        grants: ['client_credentials'],
-      }];
-      */
   this.tokens = [];
   this.users = backendConf.oauthcredentials.apiuser;
-  /* this.users = [{ id : '1', username: 'demosuser', password: 'Pa$$w0rd' }]; */
 }
 
 /**
@@ -135,3 +126,4 @@ InMemoryCache.prototype.saveAuthorizationCode = function(){
  * Export constructor.
  */
 module.exports = InMemoryCache;
+

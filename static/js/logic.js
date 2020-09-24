@@ -40,9 +40,9 @@ function constructWidgetList(widgetList) {
     console.log("Called constructWidgetList");
 
     widgetList.plugins.forEach(function (value, index, array) {
-//        console.log(value.defaultconfig);
+//       console.log(value.defaultconfig);
         var html = `
-            <button class="list-group-item d-flex justify-content-between align-items-center  list-group-item-action" name="${value.path}" id="btnPluginSelect-${value.path}">
+            <button class="list-group-item d-flex justify-content-between align-items-center  list-group-item-action widgetadd-list-group-item" name="${value.path}" id="btnPluginSelect-${value.path}">
                 <div class="widgetadd-image-parent">
                     <img src="/plugin/${value.path}/icon.png" class="img-fluid" alt="${value.path}">
                 </div>
@@ -135,6 +135,7 @@ $('.grid-stack').gridstack({
 });
 
 $('.grid-stack').on('change', function(event, items) {
+    if(typeof items === "undefined") { return;}
     items.forEach(function (item, index) {
         window.globalWidgetList[item.id].geometry = { "x": item.x, "y": item.y, "width": item.width, "height": item.height };
     });

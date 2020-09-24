@@ -24,7 +24,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var OAuthServer = require('express-oauth-server');
-const MemoryStore = require('./model.js')
+const MemoryStore = require('./OAUTH-model.js')
 const memoryStore = new MemoryStore()
 const config = require('config');
 

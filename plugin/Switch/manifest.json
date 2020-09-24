@@ -1,0 +1,7 @@
+{
+	"name" : "Switch",
+	"description" : "A Switch which can control some edge actor.",
+	"version" : "0.0.1",
+	"type": "widget",
+	"defaultconfig": {  "uuid": "", "datasource" : "", "caption" : "", "defaultstate" : false}
+}

@@ -1,0 +1,94 @@
+
+<style type="text/css">
+ .stringField-NotOk {
+  color: red;
+ }
+ .stringField-Ok {
+  color: green;
+ }
+
+</style>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" id="basic-addon1">Caption</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="Caption" aria-label="CAPTION" aria-describedby="basic-addon1" accepted-input="^.+$" isOk="false" name="caption"  value="<%- caption %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text config-group-fixed-width" id="basic-addon1">Data Source</span>
+  </div>
+  <input type="text" class="form-control stringField-text-input stringField-checkable" placeholder="data.source" aria-label="Data Source" aria-describedby="basic-addon1" accepted-input="^[0-9a-zA-Z\.\[\]]+$" isOk="false" name="datasource" value="<%- datasource %>">
+  <div class="input-group-append">
+    <span class="input-group-text"></span>
+  </div>
+</div>
+<div class="form-check">
+  <input type="checkbox" class="form-check-input checkBox-checkable" name="defaultstate" <%= defaultstate ? 'checked' : ''  %>>
+  <label class="form-check-label" for="exampleCheck1">Switch per default on ?</label>
+</div>
+
+<script type="text/javascript">
+  function switchStringFieldConfigIsAllOk() {
+    var isOk = true;
+    $( ".stringField-checkable" ).each(function( index ) {
+        isOk = ($(this).attr("isOk") !== "false") && isOk;
+        if($(this).attr("isOk") !== "false") {
+          window.newWidget.setConfig($(this).attr("name"),$(this).val());          
+        }
+//          console.log("newWidget : ", window.newWidget);
+
+    });
+    if(!isOk) {    
+      $('#btnConfWidgetNext').attr('disabled',true);
+      return;
+    }
+
+    $('#btnConfWidgetNext').removeAttr('disabled');
+  }
+
+  function switchStringFieldConfigInputCheck(element,value) {
+//    var editWidget = "<%- uuid %>";
+    var match = RegExp($(element).attr("accepted-input")).test(value);
+
+    if(match) {
+      $(element).nextAll().find(".input-group-text").html("&#10003;").removeClass( "stringField-NotOk" ).addClass( "stringField-Ok" );
+      $(element).attr("isOk","true");
+    } else {
+      $(element).nextAll().find(".input-group-text").html("&#10008;").removeClass( "stringField-Ok" ).addClass( "stringField-NotOk" );
+      $(element).attr("isOk","false");
+    }
+    switchStringFieldConfigIsAllOk();
+  }
+
+  function switchCheckBoxConfigInputCheck() {
+   $( ".checkBox-checkable" ).each(function( index ) {
+      window.newWidget.setConfig($(this).attr("name"),$(this).is( ":checked" )); 
+   });
+ }
+
+
+  $(".stringField-text-input").on('input',function() {
+    switchStringFieldConfigInputCheck(this, $(this).val());
+  });
+
+  $(".stringField-text-input").focusout(function() {
+    switchStringFieldConfigInputCheck(this, $(this).val());
+  });
+
+
+  $(".checkBox-checkable").click( function(){
+       switchCheckBoxConfigInputCheck();
+  });
+  switchCheckBoxConfigInputCheck();
+ 
+  $(".stringField-text-input").each(function(index) {
+    switchStringFieldConfigInputCheck(this, $(this).val());
+  });   
+
+
+</script>
+

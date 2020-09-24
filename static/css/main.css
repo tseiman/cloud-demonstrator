@@ -122,7 +122,27 @@ h1 {
   overflow-y: scroll;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .3rem;
+  display: block;
 }
+
+#widgetadd-list-group::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+#widgetadd-list-group::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+#widgetadd-list-group::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+#widgetadd-list-group::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
 .widgetadd-image-parent {
 /*  min-width: 50px;
   max-width: 50px;  */
@@ -132,7 +152,7 @@ h1 {
 
 
 .widgetadd-grouphead-div {
-    margin-right: 2em;
+   /* margin-right: 2em; */
     width: 85%;
 }
 

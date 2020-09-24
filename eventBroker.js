@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  *
  * Project: cloud-demonstrator
@@ -16,6 +14,8 @@
  *   iterate trough all registered listeners and call the callback function for each.
  *
  **/
+"use strict";
+
 
 
 module.exports = class EventBroker {
