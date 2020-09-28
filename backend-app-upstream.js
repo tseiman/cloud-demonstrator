@@ -54,12 +54,15 @@ module.exports = {
 
 	feederApp.post('/eventpush', feederApp.oauth.authenticate(), function(req, res) {
 	  // Requires a valid access_token.
-//	  console.log("got eventpush", req.body)
-	  eventBroker.pushMessage(req.body);
- 	  console.log(`Peer access for feeder ${req.connection.remoteAddress}`);
-	  res.statusCode = 200;
-	  res.setHeader('Content-Type', 'feederApplication/json');
-	  res.send({"response": "OK"});
+	//	  console.log("got eventpush", req.body)
+
+		var data = req.body;
+		data.routing = "incomming";  // placing a routing information in the message to avoid event loops
+	  	eventBroker.pushMessage(data);
+		console.log(`Peer access for feeder ${req.connection.remoteAddress}`);
+	  	res.statusCode = 200;
+	  	res.setHeader('Content-Type', 'feederApplication/json');
+	  	res.send({"response": "OK"});
 	});
 
 

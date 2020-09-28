@@ -1,0 +1,16 @@
+{
+  
+  "frontend": {           
+    "webuiport": "CD_FRONTEND_WEBUIPORT",      
+    "websocketport": "CD_FRONTEND_WEBSOCKETPORT",
+    "uselogin": "CD_FRONTEND_USELOGIN"
+  },                
+  "backend": {            
+    "apiport": "CD_BACKEND_APIPORT", 
+    "remoteapi": { 
+      "url": "CD_REMOTEAPI_URL",
+      "user": "CD_REMOTEAPI_USER",
+      "token": "CD_REMOTEAPI_TOKEN"
+    }
+  }
+}

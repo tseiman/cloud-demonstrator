@@ -6,10 +6,14 @@ export default class {
     this.widgetConf = widgetConf; 
     var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
 
-
+    this.debug = false;
+    if(new URLSearchParams(window.location.search).get('pluginGaugeDEBUG') === 'true') {  // append  ?...&pluginStringFieldDEBUG=true to the URL to get debug outut from this module
+        console.log("Plugin Gauge debug enabled");
+        this.debug = true;
+    }
 
     
-    console.log("new Gauge generator with conf: ", widgetConf);
+    if(this.debug) { console.log("new Gauge generator with conf: ", widgetConf); }
 
   //  var grid = $('.grid-stack').data('gridstack');
 //console.log(grid);

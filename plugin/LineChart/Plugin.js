@@ -7,10 +7,14 @@ export default class {
     this.options = null;
     var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
 
-
+    this.debug = false;
+    if(new URLSearchParams(window.location.search).get('pluginLineChartDEBUG') === 'true') {  // append  ?...&pluginLineChartDEBUG=true to the URL to get debug outut from this module
+        console.log("Plugin Line Chart debug enabled");
+        this.debug = true;
+    }
 
     
-    console.log("new Line chart generator with conf: ", widgetConf);
+    if(this.debug) { console.log("new Line chart generator with conf: ", widgetConf); }
 
   //  var grid = $('.grid-stack').data('gridstack');
 //console.log(grid);
@@ -96,6 +100,19 @@ export default class {
       }
 
     }
+
+
+    var numValid = 0;
+    for(var i = 0; i < this.options.line.length ; i++) {
+      let newData = nestedProp(data,this.options.line[i].datasource);
+      if(typeof newData !== 'undefined') { ++numValid; }
+    }
+
+    if(numValid === 0) {
+      return;
+    }
+
+
     tmpChart.data.labels.push(timeStamp);
     if(isExeedingDataPoints) {
       tmpChart.data.labels.shift();

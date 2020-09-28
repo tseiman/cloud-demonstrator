@@ -6,6 +6,7 @@ const btoa = require('btoa')
 global.temperature = 0;
 global.huminity = 1;
 global.clientid = 0;
+global.switchstate = false;
 // const { ISSUER, CLIENT_ID, CLIENT_SECRET, SCOPE } = process.env
 
 const [,, uri, method, body] = process.argv
@@ -38,12 +39,13 @@ const sendAPIRequest = async () => {
 
     	var temperatureAbs =  Math.round(Math.sin((temperature / 10) * Math.PI) * 15 +15);
     	var huminityAbs =  Math.round(Math.sin((huminity / 10) * Math.PI) * 50 + 50);
-		var ts = Math.round((new Date()).getTime() / 1000) -3600;
+      switchstate = !switchstate;
+		var ts = Math.round((new Date()).getTime() / 1000) ;
   	    const response = await request({
 	      uri: 'http://localhost:3000/eventpush',
 	      method: 'POST',
 	      json: true,
-	      body: {"clientid":"client-" + clientid, "time": ts, "data":{"temperature":temperatureAbs, "huminity": huminityAbs}},
+	      body: {"clientid":"client-" + clientid, "time": ts, "data":{"temperature":temperatureAbs, "huminity": huminityAbs, "myswitchstate" : switchstate}},
 	      headers: {
 	        authorization: `${auth.token_type} ${auth.access_token}`
 	      }

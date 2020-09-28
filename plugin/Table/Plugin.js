@@ -16,11 +16,16 @@ export default class {
     this.nestedProp = (obj, path) => path.split('.').reduce((obj, prop) => obj[prop], obj);
 
 
-   
+    this.debug = false;
+    if(new URLSearchParams(window.location.search).get('pluginSwitchDEBUG') === 'true') {  // append  ?...&pluginLineChartDEBUG=true to the URL to get debug outut from this module
+        console.log("Plugin Table debug enabled");
+        this.debug = true;
+    }
+
 
     var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
 
-    console.log("new Line chart generator with conf: ", widgetConf);
+    if(this.debug) { console.log("new Table generator with conf: ", widgetConf); } 
 
 
 
@@ -158,6 +163,14 @@ export default class {
 
       
     }
+
+    for(var i = 0; i < this.options.col.length ; i++) {
+      let newData = this.nestedProp(data,this.options.col[i].datasource);
+      if((typeof newData === 'undefined') && this.options.col[i].mandatory) {  
+        return;     // if there is a mandatory field which was not seen in the message we ignore the complete message
+      }
+    }
+
 
 
     for(var i = 0; i < this.options.col.length ; i++) {

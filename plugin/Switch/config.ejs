@@ -39,7 +39,6 @@
         if($(this).attr("isOk") !== "false") {
           window.newWidget.setConfig($(this).attr("name"),$(this).val());          
         }
-//          console.log("newWidget : ", window.newWidget);
 
     });
     if(!isOk) {    
@@ -51,7 +50,7 @@
   }
 
   function switchStringFieldConfigInputCheck(element,value) {
-//    var editWidget = "<%- uuid %>";
+
     var match = RegExp($(element).attr("accepted-input")).test(value);
 
     if(match) {

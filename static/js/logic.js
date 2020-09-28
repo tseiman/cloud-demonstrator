@@ -90,13 +90,16 @@ let error = null;
 
     socket.on('connect', () => {
         console.log('Connected');
-
         socket.emit('authentication', {username: username, password: password}); 
+        clientEventBroker.setDownstreamIoCallback(function(msg) {
+            socket.emit('downstreamMessage', msg);
+        });
     });
 
     socket.on('unauthorized', (reason) => {
         console.log('Unauthorized:', reason);
         error = reason.message;
+        clientEventBroker.setDownstreamIoCallback(null);
         socket.disconnect();
         console.log('show modal');
 
@@ -106,10 +109,11 @@ let error = null;
 
     socket.on('disconnect', (reason) => {
         console.log(`Disconnected: ${error || reason}`);
+        clientEventBroker.setDownstreamIoCallback(null);
         error = null;
     });
 
-    socket.on('pushMessage', (msg) => {
+    socket.on('upstreamMessage', (msg) => {
         clientEventBroker.handleIncommingMessage(msg);
         error = null;
     });
@@ -205,7 +209,7 @@ $('#btnConfWidgetNext').on('click', function(event) {
     (async () => {
 
         const {default: Plugin} = await import('../plugin/' + window.newWidget.pluginToAdd +  '/Plugin.js');
-        window.newWidget.logic = new Plugin(window.newWidget,window.globalWidgetList);
+        window.newWidget.logic = new Plugin(window.newWidget,window.globalWidgetList,clientEventBroker);
          globalWidgetList[window.newWidget.uuid] = window.newWidget;
 
     })().catch(error => {
@@ -296,7 +300,7 @@ function loadConfig(jsonConfig) {
 
         (async (myNewWidget) => {
             const {default: Plugin} = await import('../plugin/' + myNewWidget.pluginToAdd +  '/Plugin.js');
-            myNewWidget.logic = new Plugin(myNewWidget,window.globalWidgetList);
+            myNewWidget.logic = new Plugin(myNewWidget,window.globalWidgetList, clientEventBroker);
              globalWidgetList[myNewWidget.uuid] = myNewWidget;
 
         })(myNewWidget).catch(error => {

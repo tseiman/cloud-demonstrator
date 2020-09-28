@@ -73,14 +73,17 @@ var frontend = require('./frontend-app');
 var ws = require('./frontend-ws');
 var EventBroker = require('./eventBroker');
 
-var backend = require('./backend-app-upstream');
-
+var backendUpstream = require('./backend-app-upstream');
+var backendDownstream = require('./backend-app-downstream');
 var eventBroker = new EventBroker();
 
 /* ==== Here the backend OAuthAuthenticated Service starts ===== */
 
 
-backend.setup(eventBroker);
+backendUpstream.setup(eventBroker);
+
+
+backendDownstream.setup(eventBroker);
 
 /* =============== Here the frontend Service starts ============ */
 

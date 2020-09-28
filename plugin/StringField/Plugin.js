@@ -4,12 +4,19 @@ export default class {
 
   constructor(widgetConf,globalWidgetList) {
     this.widgetConf = widgetConf; 
+    this.debug = false;
+
+    if(new URLSearchParams(window.location.search).get('pluginStringFieldDEBUG') === 'true') {  // append  ?...&pluginStringFieldDEBUG=true to the URL to get debug outut from this module
+        console.log("Plugin StringField debug enabled");
+        this.debug = true;
+    }
+
     var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
 
 
 
     
-    console.log("new StringFiled generator with conf: ", widgetConf);
+    if(this.debug) {  console.log("new StringFiled generator with conf: ", widgetConf); }
 
   //  var grid = $('.grid-stack').data('gridstack');
 //console.log(grid);
@@ -50,7 +57,7 @@ export default class {
             $('#' + this.options.uuid).find('.grid-stack-item-content').css('background-color',this.options.bgColor).css('color',this.options.color); 
             $('#' + this.options.uuid).find('.grid-stack-item-content').find('h5').text(this.options.caption);
         }
-        console.log("Added new plugin:", this);
+        if(this.debug) { console.log("Added new plugin:", this); }
 
     });
 

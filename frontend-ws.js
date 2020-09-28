@@ -98,12 +98,20 @@ socketAuth(io, {
 	postAuthenticate: (socket) => {
 		console.log(`Socket ${socket.id} authenticated.`);
 		eventBroker.registerListener(function(msg) {
-			console.log("frontend ws got message via broker: ", msg);
-			io.emit('pushMessage', msg);
+			if(typeof msg.routing === 'undefined') {
+				console.error("ERROR Routing field not defined at message (it will be not proceessed to avoid event loops!): " + msg);
+				return;
+			}
+			if(msg.routing === 'incomming') {  // prevent an event loop
+				console.log("frontend ws got message via broker: ", msg);
+				io.emit('upstreamMessage', msg);
+			
+			} 
 		});
-//		socket.on('widgetList', function(msg){
-//			 io.emit('widgetList', pluginManager.listPlugins("widget"));
-//		});
+
+		socket.on('downstreamMessage', function(msg){
+			eventBroker.pushMessage(msg);
+		});
 
 	},
 	disconnect: (socket) => {

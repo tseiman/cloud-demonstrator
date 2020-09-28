@@ -44,7 +44,13 @@
       				"password": "Pa$$w0rd" 
       			}
       		]
-  	}  								// END of oauth credentials
+  	}, 								// END of oauth credentials
+    "remoteapi": {    // here we can send data to
+      "url": "https://myserver/postbox",
+      "user": "myuser",
+      "token": "apiToken"
+    }
+
 
   } 								// END of Backend config
 

@@ -2,15 +2,24 @@ export default class {
 
  
 
-  constructor(widgetConf,globalWidgetList) {
+  constructor(widgetConf,globalWidgetList,clientEventBroker) {
     this.widgetConf = widgetConf; 
-    var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
-
-
+    this.eventBroker = clientEventBroker;
+    
+    this.debug = false;
+    if(new URLSearchParams(window.location.search).get('pluginSwitchDEBUG') === 'true') {  // append  ?...&pluginLineChartDEBUG=true to the URL to get debug outut from this module
+        console.log("Plugin Switch debug enabled");
+        this.debug = true;
+    }
 
     
-    console.log("new Switch generator with conf: ", widgetConf);
+     
+    var that = this;
 
+    var  isNewWidgetAndNotUpdated =  (globalWidgetList[widgetConf.uuid] == null);
+
+    
+    if(this.debug) { console.log("new Switch generator with conf: ", widgetConf); }
 
 
 
@@ -50,29 +59,48 @@ export default class {
           $('#' + this.options.uuid).html($(this.html).children() );
           $('#' + this.options.uuid).append(savedResizeBtn );
 
+
+
           window.setToolIconToGridItems(this.options.uuid);
+
         }
+
+          $('#onoffswitch-' + this.options.uuid).change(function() {
+
+              that.emitChange($(this).is(":checked"));
+
+          }); 
+
 
     });
 
 
   }
 
+  setJsonObject(data, path, val) {
+    var k = data;
+    var steps = path.split('.');
+    var last = steps.pop();
+    steps.forEach(e => (data[e] = data[e] || {}) && (data = data[e]));
+    data[last] = val;
+    return data 
+  }
+  
+
+  emitChange(state) {
+    var timestamp = Math.floor(new Date().getTime() / 1000);
+    var data = {"routing": "outgoing", "source" : this.widgetConf.uuid, "time": timestamp, data: {}};
+    this.setJsonObject(data, this.widgetConf.config.datasource, state);
+    this.eventBroker.handleIncommingMessage(data);
+  }
 
   feedData(data) {
-  //  console.log("feed data to switch", data);
-/*    const nestedProp = (obj, path) => path.split('.').reduce((obj, prop) => obj[prop], obj);
-
+    const nestedProp = (obj, path) => path.split('.').reduce((obj, prop) => obj[prop], obj);
     let newData = nestedProp(data,this.widgetConf.config.datasource);
-
     if( typeof newData !== 'undefined' ) {
-//      $('#' + this.widgetConf.uuid).find("h1").text(newData +  this.widgetConf.config.unit);
-      var tmpGauge = $("#gaugeCanvas-" + this.widgetConf.uuid).data('gauge');
-      tmpGauge.set(newData);
+      $('#' + this.widgetConf.uuid).find("input").prop('checked', newData );
     }
-*/
   }
 
 }
-// data.bgcolor  data.color  data.title 
 

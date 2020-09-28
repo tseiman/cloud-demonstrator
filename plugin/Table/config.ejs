@@ -47,6 +47,19 @@
 .btnTableAlignText {
   transform: rotate(180deg);
 }
+
+.mandatoryColCheck {
+  display:block;
+  margin: 0;
+  padding-left: 2.2em;
+  text-indent: -2.2em;
+}
+
+.mandatoryColCheck * {
+  display: inline;
+}
+
+
 </style>
 <link href="/plugin/Table/all.css" rel="stylesheet" />
 <div class="input-group mb-3">
@@ -113,6 +126,10 @@
     <label for="updateTableRadioGrp-1">Substitute a dataset in the table if this column matches it's related newdata</label> 
     <input type="checkbox" id="sortableTableCheck-1" name="col[0].sortable" class="inputRadioTable inputCheckSortableTable" checked>
     <label for="sortableTableCheck-1">Sortable ?</label>
+    <div class="mandatoryColCheck">
+      <input type="checkbox" id="mandatoryTableelement-1" name="col[0].mandatory" class="inputRadioTable inputCheckSortableTable mandatoryColCheckInput" checked>&nbsp;
+      <label for="mandatoryTableelement-1">Is this a mandatory table element ? (incomming message will be only read if this field is present in the message)</span>
+    </div>
  
     <div class="btn-group btn-group-toggle btnTableAlign" data-toggle="buttons">
       <label class="btn btn-secondary">
@@ -178,7 +195,12 @@ $( document ).ready(function() {
           <label for="updateTableRadioGrp-${numSegmentItems}">Substitute a dataset in the table if this column matches it&#39;s related newdata</label> 
           <input type="checkbox" id="sortableTableCheck-${numSegmentItems}" name="col[${segmentIndex}].sortable" class="inputRadioTable inputCheckSortableTable" checked>
           <label for="sortableTableCheck-${numSegmentItems}">Sortable ?</label> 
- 
+
+           <div class="mandatoryColCheck">
+            <input type="checkbox" id="mandatoryTableelement-${numSegmentItems}" name="col[${segmentIndex}].mandatory" class="inputRadioTable inputCheckSortableTable mandatoryColCheckInput" checked>&nbsp;
+            <label for="mandatoryTableelement-${numSegmentItems}">Is this a mandatory table element ? (incomming message will be only read if this field is present in the message)</span>
+          </div>
+     
           <div class="btn-group btn-group-toggle btnTableAlign" data-toggle="buttons">
             <label class="btn btn-secondary">
               <input type="radio" name="col[${segmentIndex}].align" value="left" autocomplete="off" class="tabelColAlignSelectBtn alignableTableCheck-${numSegmentItems}" ><i class="fa fa-align-right btnTableAlignText"></i>
@@ -200,7 +222,7 @@ $( document ).ready(function() {
 // -------------------------------------------------------------
 function updateAColItem(fullName,val) {
 
-// console.log("updating:", fullName,val);
+ console.log("updating:", fullName,val);
 
   extractArrayElement.lastIndex = 0;
   let arrayElement = extractArrayElement.exec(fullName);
@@ -354,6 +376,11 @@ function checkSortAbleCheckbox() {
     updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
   });
 
+    $("#mandatoryTableelement-1").click( function(){
+    updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+  });
+
+
   $(".alignableTableCheck-1").click( function(){
     updateAColItem($(this).attr("name"),$(this).attr("value"));          
   });
@@ -377,7 +404,7 @@ function checkSortAbleCheckbox() {
 
     let localConfig = window.newWidget.getConfig();
     let localConfigSegment = localConfig["col"];
-    localConfigSegment.push({ "colhead": "", "datasource": "", "sortable": true, "align": "center"});
+    localConfigSegment.push({ "colhead": "", "datasource": "", "sortable": true, "mandatory": false, "align": "center"});
     window.newWidget.setConfig("col",localConfigSegment);
 
 
@@ -413,6 +440,10 @@ function checkSortAbleCheckbox() {
       updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
     });
 
+
+    $("#mandatoryTableelement-" + numSegmentItems).click( function(){
+      updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+    });
 
     $(".alignableTableCheck-" + numSegmentItems).click( function(){
       updateAColItem($(this).attr("name"),$(this).attr("value"));          
@@ -468,6 +499,7 @@ function checkSortAbleCheckbox() {
     $("#grpTableSegements").append(html);
 
     $("#sortableTableCheck-" + (i +1)).prop('checked', obj.sortable);
+    $("#mandatoryTableelement-" + (i +1)).prop('checked', obj.mandatory);
 
     $(".alignableTableCheck-" + (i +1)).each(function(index) {
 //      console.log("Align Check", $(this).attr("value"), obj.align);
@@ -510,6 +542,11 @@ function checkSortAbleCheckbox() {
       updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
     });
 
+     $("#mandatoryTableelement-" + (i+1)).click( function(){
+      updateAColItem($(this).attr("name"),$(this).is( ":checked" ));          
+    });
+
+
 
     $(".alignableTableCheck-" + (i+1)).click( function(){
       updateAColItem($(this).attr("name"),$(this).attr("value"));          
@@ -523,6 +560,7 @@ function checkSortAbleCheckbox() {
   // -------------------------------------------------------------
 
     $("#sortableTableCheck-1").prop('checked', configDataJSON[0].sortable);
+    $("#mandatoryTableelement-1").prop('checked', configDataJSON[0].mandatory);
 
     $(".alignableTableCheck-1").each(function(index) {
     //  console.log("Align Check", $(this).attr("value"), configDataJSON[0].align);
