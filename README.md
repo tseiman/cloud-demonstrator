@@ -52,8 +52,8 @@ An example of how to execute:
 ### Under Windows
 
 ```Shell
-set CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/{my Command Stream ID}
-set CD_REMOTEAPI_USER={my octave username}
+set CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/${my Command Stream ID}
+set CD_REMOTEAPI_USER=MY_OCTAVE_USERNAME
 set CD_REMOTEAPI_TOKEN={my octave token}
 CloudDemonstratorServer-win.exe
 ```
