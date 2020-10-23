@@ -30,7 +30,10 @@ node app.js
 ## Example run with SWI Octave
 Here some security paramters are not configured in the configuration file and given via command line under **linux**:
 ```Shell
-CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID>" CD_REMOTEAPI_USER="&gt;my octave username>" CD_REMOTEAPI_TOKEN="&gt;my octave token>"  node app.js
+CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/<my Command Stream ID>" \
+CD_REMOTEAPI_USER="<my octave username>" \
+CD_REMOTEAPI_TOKEN="<my octave token>"  \
+node app.js
 ```
 
 run unter Windows doesn't allow to set environment variables in one comamnd line with the execution command. Therefore the variables have to be exported before:
@@ -59,13 +62,19 @@ CloudDemonstratorServer-win.exe
 ### Under Mac
 
 ```Shell
-CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/<my Command Stream ID>"; CD_REMOTEAPI_USER="<my octave username>"; CD_REMOTEAPI_TOKEN="<my octave token>" ./CloudDemonstratorServer-macos
+CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/<my Command Stream ID>" \
+CD_REMOTEAPI_USER="<my octave username>" \
+CD_REMOTEAPI_TOKEN="<my octave token>" \
+./CloudDemonstratorServer-macos
 ```
 
 ### Under Linux
 
 ```Shell
-CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/<my Command Stream ID>"; CD_REMOTEAPI_USER="<my octave username>"; CD_REMOTEAPI_TOKEN="<my octave token>"" ./CloudDemonstratorServer-linux
+CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/<my Command Stream ID>" \
+CD_REMOTEAPI_USER="<my octave username>" \ 
+CD_REMOTEAPI_TOKEN="<my octave token>" \
+./CloudDemonstratorServer-linux
 ```
 
 
