@@ -15,18 +15,63 @@ Cloud demonstrator is a node.js application which provides a Backend where it ta
 
 
 # install dependencies
-```
+```Shell
 npm install
 ```
 
 # run
-```
+
+## Without further parameters 
+This requires full configuration in the config file
+```Shell
 node app.js
 ```
 
+## Example run with SWI Octave
+Here some security paramters are not configured in the configuration file and given via command line under **linux**:
+```Shell
+CD_REMOTEAPI_URL="https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID&lt;" CD_REMOTEAPI_USER="&gt;my octave username&lt;" CD_REMOTEAPI_TOKEN="&gt;my octave token&lt;"  node app.js
+```
+
+run unter Windows doesn't allow to set environment variables in one comamnd line with the execution command. Therefore the variables have to be exported before:
+
+```Shell
+set CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID&lt;
+set CD_REMOTEAPI_USER=&gt;my octave username&lt;
+set CD_REMOTEAPI_TOKEN="&gt;my octave token&lt; 
+node app.js
+```
+## run readymade packages
+The Node JS application can be packed with the ```pkg``` command below. As a result one will become a EXE, a Linux ELF or MacOS executable. 
+Instead of a full NodeJS intstallation only the executable and plugin, static data is requried.
+An example of how to execute:
+
+### Under Windows
+
+```Shell
+set CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID&lt;
+set CD_REMOTEAPI_USER=&gt;my octave username&lt;
+set CD_REMOTEAPI_TOKEN="&gt;my octave token&lt; 
+CloudDemonstratorServer-win.exe
+```
+
+
+### Under Mac
+
+```Shell
+CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID&lt;; CD_REMOTEAPI_USER=&gt;my octave username&lt;; CD_REMOTEAPI_TOKEN="&gt;my octave token&lt; ./CloudDemonstratorServer-macos
+```
+
+### Under Linux
+
+```Shell
+CD_REMOTEAPI_URL=https://octave-api.sierrawireless.io/v5.0/sierra_internal/event/&gt;my Command Stream ID&lt;; CD_REMOTEAPI_USER=&gt;my octave username&lt;; CD_REMOTEAPI_TOKEN="&gt;my octave token&lt; ./CloudDemonstratorServer-linux
+```
+
+
 # Build packages
 Building packed executables for Windwos, Linux and MacOS:
-```
+```Shell
 pkg .
 ```
 
